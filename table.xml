@@ -1,5 +1,5 @@
 <mujoco model='table-environment'>
-    <include file='common.xml'/>
+    <include file='./common.xml'/>
 
     <option iterations="20" noslip_iterations="20" timestep="0.004"/>
     <size njmax="1000" nconmax="100" nstack="600000" />
@@ -21,11 +21,6 @@
 
         <mesh file="./scene/wall.stl" scale="0.002 0.002 0.0002"/>
         <mesh file="./scene/skyline.stl" scale="2 2 1"/>
-
-	<mesh name="006_mustard_bottle" file="ycb/006_mustard_bottle/textured.obj"  />
-w       <mesh name="contact0" file="ycb/006_mustard_bottle/contact0.stl"  />
-        <mesh name="contact1" file="ycb/006_mustard_bottle/contact1.stl"  />
-        <mesh name="contact2" file="ycb/006_mustard_bottle/contact2.stl"  />
     </asset>
 
     <default>
@@ -68,19 +63,6 @@ w       <mesh name="contact0" file="ycb/006_mustard_bottle/contact0.stl"  />
             <geom size="0.04 0.5" pos="-0.4 0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
             <geom size="0.04 0.5" pos="0.4 -0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
             <geom size="0.04 0.5" pos="-0.4 -0.4 -0.501" quat="0 1 0 0" type="cylinder" contype="0" conaffinity="0" />
-        </body>
-
-        <body name="006_mustard_bottle" pos="0.00 0.0 0.0865">
-            <joint name="OBJTx" pos="0 0 0" axis="1 0 0" type="slide" class="freejoint" />
-            <joint name="OBJTy" pos="0 0 0" axis="0 1 0" type="slide" class="freejoint" />
-            <joint name="OBJTz" pos="0 0 0" axis="0 0 1" type="slide" class="freejoint" />
-            <joint name="OBJRx" pos="0 0 0" axis="1 0 0" class="freejoint" />
-            <joint name="OBJRy" pos="0 0 0" axis="0 1 0" class="freejoint" />
-            <joint name="OBJRz" pos="0 0 0" axis="0 0 1" class="freejoint" />
-	    <geom name="006_mustard_bottle_visual" class="object_visual" mesh="006_mustard_bottle" />
-            <geom name="006_mustard_bottle_contact0" class="object_contact" mesh="contact0" />
-            <geom name="006_mustard_bottle_contact1" class="object_contact" mesh="contact1" />
-            <geom name="006_mustard_bottle_contact2" class="object_contact" mesh="contact2" />
         </body>
 
     </worldbody>

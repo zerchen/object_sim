@@ -1,0 +1,23 @@
+<mujoco model="021_bleach_cleanser">
+    <include file="../../common.xml"/>
+    <asset>
+        <mesh name="021_bleach_cleanser" file="../../ycb/021_bleach_cleanser/textured.obj"  />
+        <mesh name="contact0" file="../../ycb/021_bleach_cleanser/contact0.stl"  />
+        <mesh name="contact1" file="../../ycb/021_bleach_cleanser/contact1.stl"  />
+        <mesh name="contact2" file="../../ycb/021_bleach_cleanser/contact2.stl"  />
+    </asset>
+    <worldbody>
+        <body name="021_bleach_cleanser" pos="0.0 0.0 0.1204">
+            <joint name="OBJTx" pos="0 0 0" axis="1 0 0" type="slide" class="freejoint" />
+            <joint name="OBJTy" pos="0 0 0" axis="0 1 0" type="slide" class="freejoint" />
+            <joint name="OBJTz" pos="0 0 0" axis="0 0 1" type="slide" class="freejoint" />
+            <joint name="OBJRx" pos="0 0 0" axis="1 0 0" class="freejoint" />
+            <joint name="OBJRy" pos="0 0 0" axis="0 1 0" class="freejoint" />
+            <joint name="OBJRz" pos="0 0 0" axis="0 0 1" class="freejoint" />
+            <geom name="021_bleach_cleanser_visual" class="object_visual" mesh="021_bleach_cleanser" />
+            <geom name="021_bleach_cleanser_contact0" class="object_contact" mesh="contact0" />
+            <geom name="021_bleach_cleanser_contact1" class="object_contact" mesh="contact1" />
+            <geom name="021_bleach_cleanser_contact2" class="object_contact" mesh="contact2" />
+        </body>
+    </worldbody>
+</mujoco>

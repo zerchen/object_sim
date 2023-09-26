@@ -1,0 +1,31 @@
+<mujoco model="002_master_chef_can">
+    <include file="../../common.xml"/>
+    <asset>
+        <mesh name="002_master_chef_can" file="../../ycb/002_master_chef_can/textured.obj"  />
+        <mesh name="contact0" file="../../ycb/002_master_chef_can/contact0.stl"  />
+        <mesh name="contact1" file="../../ycb/002_master_chef_can/contact1.stl"  />
+        <mesh name="contact2" file="../../ycb/002_master_chef_can/contact2.stl"  />
+        <mesh name="contact3" file="../../ycb/002_master_chef_can/contact3.stl"  />
+        <mesh name="contact4" file="../../ycb/002_master_chef_can/contact4.stl"  />
+        <mesh name="contact5" file="../../ycb/002_master_chef_can/contact5.stl"  />
+        <mesh name="contact6" file="../../ycb/002_master_chef_can/contact6.stl"  />
+    </asset>
+    <worldbody>
+        <body name="002_master_chef_can" pos="0.0 0.0 0.0446">
+            <joint name="OBJTx" pos="0 0 0" axis="1 0 0" type="slide" class="freejoint" />
+            <joint name="OBJTy" pos="0 0 0" axis="0 1 0" type="slide" class="freejoint" />
+            <joint name="OBJTz" pos="0 0 0" axis="0 0 1" type="slide" class="freejoint" />
+            <joint name="OBJRx" pos="0 0 0" axis="1 0 0" class="freejoint" />
+            <joint name="OBJRy" pos="0 0 0" axis="0 1 0" class="freejoint" />
+            <joint name="OBJRz" pos="0 0 0" axis="0 0 1" class="freejoint" />
+            <geom name="002_master_chef_can_visual" class="object_visual" mesh="002_master_chef_can" />
+            <geom name="002_master_chef_can_contact0" class="object_contact" mesh="contact0" />
+            <geom name="002_master_chef_can_contact1" class="object_contact" mesh="contact1" />
+            <geom name="002_master_chef_can_contact2" class="object_contact" mesh="contact2" />
+            <geom name="002_master_chef_can_contact3" class="object_contact" mesh="contact3" />
+            <geom name="002_master_chef_can_contact4" class="object_contact" mesh="contact4" />
+            <geom name="002_master_chef_can_contact5" class="object_contact" mesh="contact5" />
+            <geom name="002_master_chef_can_contact6" class="object_contact" mesh="contact6" />
+        </body>
+    </worldbody>
+</mujoco>

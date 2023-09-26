@@ -1,0 +1,31 @@
+<mujoco model="035_power_drill">
+    <include file="../../common.xml"/>
+    <asset>
+        <mesh name="035_power_drill" file="../../ycb/035_power_drill/textured.obj"  />
+        <mesh name="contact0" file="../../ycb/035_power_drill/contact0.stl"  />
+        <mesh name="contact1" file="../../ycb/035_power_drill/contact1.stl"  />
+        <mesh name="contact2" file="../../ycb/035_power_drill/contact2.stl"  />
+        <mesh name="contact3" file="../../ycb/035_power_drill/contact3.stl"  />
+        <mesh name="contact4" file="../../ycb/035_power_drill/contact4.stl"  />
+        <mesh name="contact5" file="../../ycb/035_power_drill/contact5.stl"  />
+        <mesh name="contact6" file="../../ycb/035_power_drill/contact6.stl"  />
+    </asset>
+    <worldbody>
+        <body name="035_power_drill" pos="0.0 0.0 0.0056">
+            <joint name="OBJTx" pos="0 0 0" axis="1 0 0" type="slide" class="freejoint" />
+            <joint name="OBJTy" pos="0 0 0" axis="0 1 0" type="slide" class="freejoint" />
+            <joint name="OBJTz" pos="0 0 0" axis="0 0 1" type="slide" class="freejoint" />
+            <joint name="OBJRx" pos="0 0 0" axis="1 0 0" class="freejoint" />
+            <joint name="OBJRy" pos="0 0 0" axis="0 1 0" class="freejoint" />
+            <joint name="OBJRz" pos="0 0 0" axis="0 0 1" class="freejoint" />
+            <geom name="035_power_drill_visual" class="object_visual" mesh="035_power_drill" />
+            <geom name="035_power_drill_contact0" class="object_contact" mesh="contact0" />
+            <geom name="035_power_drill_contact1" class="object_contact" mesh="contact1" />
+            <geom name="035_power_drill_contact2" class="object_contact" mesh="contact2" />
+            <geom name="035_power_drill_contact3" class="object_contact" mesh="contact3" />
+            <geom name="035_power_drill_contact4" class="object_contact" mesh="contact4" />
+            <geom name="035_power_drill_contact5" class="object_contact" mesh="contact5" />
+            <geom name="035_power_drill_contact6" class="object_contact" mesh="contact6" />
+        </body>
+    </worldbody>
+</mujoco>
