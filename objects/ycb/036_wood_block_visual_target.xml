@@ -1,0 +1,11 @@
+<mujoco model="036_wood_block">
+    <include file="../../common.xml"/>
+    <asset>
+        <mesh name="036_wood_block" file="../../ycb/036_wood_block/textured.obj"  />
+    </asset>
+    <worldbody>
+        <body name="036_wood_block_target" pos="0.0 0.0 0.078">
+            <geom type="mesh" contype="0" conaffinity="0" mass="0" name="036_wood_block_visual_target" class="object_visual" mesh="036_wood_block" rgba="0 1 0 0.125" />
+        </body>
+    </worldbody>
+</mujoco>

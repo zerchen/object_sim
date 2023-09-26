@@ -1,0 +1,11 @@
+<mujoco model="008_pudding_box">
+    <include file="../../common.xml"/>
+    <asset>
+        <mesh name="008_pudding_box" file="../../ycb/008_pudding_box/textured.obj"  />
+    </asset>
+    <worldbody>
+        <body name="008_pudding_box_target" pos="0.0 0.0 -0.0054">
+            <geom type="mesh" contype="0" conaffinity="0" mass="0" name="008_pudding_box_visual_target" class="object_visual" mesh="008_pudding_box" rgba="0 1 0 0.125" />
+        </body>
+    </worldbody>
+</mujoco>

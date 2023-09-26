@@ -1,0 +1,11 @@
+<mujoco model="002_master_chef_can">
+    <include file="../../common.xml"/>
+    <asset>
+        <mesh name="002_master_chef_can" file="../../ycb/002_master_chef_can/textured.obj"  />
+    </asset>
+    <worldbody>
+        <body name="002_master_chef_can_target" pos="0.0 0.0 0.0446">
+            <geom type="mesh" contype="0" conaffinity="0" mass="0" name="002_master_chef_can_visual_target" class="object_visual" mesh="002_master_chef_can" rgba="0 1 0 0.125" />
+        </body>
+    </worldbody>
+</mujoco>

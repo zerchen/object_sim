@@ -1,0 +1,11 @@
+<mujoco model="035_power_drill">
+    <include file="../../common.xml"/>
+    <asset>
+        <mesh name="035_power_drill" file="../../ycb/035_power_drill/textured.obj"  />
+    </asset>
+    <worldbody>
+        <body name="035_power_drill_target" pos="0.0 0.0 0.0056">
+            <geom type="mesh" contype="0" conaffinity="0" mass="0" name="035_power_drill_visual_target" class="object_visual" mesh="035_power_drill" rgba="0 1 0 0.125" />
+        </body>
+    </worldbody>
+</mujoco>

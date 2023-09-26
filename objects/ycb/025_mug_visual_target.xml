@@ -1,0 +1,11 @@
+<mujoco model="025_mug">
+    <include file="../../common.xml"/>
+    <asset>
+        <mesh name="025_mug" file="../../ycb/025_mug/textured.obj"  />
+    </asset>
+    <worldbody>
+        <body name="025_mug_target" pos="0.0 0.0 0.0198">
+            <geom type="mesh" contype="0" conaffinity="0" mass="0" name="025_mug_visual_target" class="object_visual" mesh="025_mug" rgba="0 1 0 0.125" />
+        </body>
+    </worldbody>
+</mujoco>
