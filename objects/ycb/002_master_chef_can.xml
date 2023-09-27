@@ -11,21 +11,21 @@
         <mesh name="contact6" file="../../ycb/002_master_chef_can/contact6.stl"  />
     </asset>
     <worldbody>
-        <body name="002_master_chef_can" pos="0.0 0.0 0.0446">
+        <body name="object_entity" pos="0.0 0.0 0.0446">
             <joint name="OBJTx" pos="0 0 0" axis="1 0 0" type="slide" class="freejoint" />
             <joint name="OBJTy" pos="0 0 0" axis="0 1 0" type="slide" class="freejoint" />
             <joint name="OBJTz" pos="0 0 0" axis="0 0 1" type="slide" class="freejoint" />
             <joint name="OBJRx" pos="0 0 0" axis="1 0 0" class="freejoint" />
             <joint name="OBJRy" pos="0 0 0" axis="0 1 0" class="freejoint" />
             <joint name="OBJRz" pos="0 0 0" axis="0 0 1" class="freejoint" />
-            <geom name="002_master_chef_can_visual" class="object_visual" mesh="002_master_chef_can" />
-            <geom name="002_master_chef_can_contact0" class="object_contact" mesh="contact0" />
-            <geom name="002_master_chef_can_contact1" class="object_contact" mesh="contact1" />
-            <geom name="002_master_chef_can_contact2" class="object_contact" mesh="contact2" />
-            <geom name="002_master_chef_can_contact3" class="object_contact" mesh="contact3" />
-            <geom name="002_master_chef_can_contact4" class="object_contact" mesh="contact4" />
-            <geom name="002_master_chef_can_contact5" class="object_contact" mesh="contact5" />
-            <geom name="002_master_chef_can_contact6" class="object_contact" mesh="contact6" />
+            <geom name="entity_visual" class="object_visual" mesh="002_master_chef_can" />
+            <geom name="entity_contact0" class="object_contact" mesh="contact0" />
+            <geom name="entity_contact1" class="object_contact" mesh="contact1" />
+            <geom name="entity_contact2" class="object_contact" mesh="contact2" />
+            <geom name="entity_contact3" class="object_contact" mesh="contact3" />
+            <geom name="entity_contact4" class="object_contact" mesh="contact4" />
+            <geom name="entity_contact5" class="object_contact" mesh="contact5" />
+            <geom name="entity_contact6" class="object_contact" mesh="contact6" />
         </body>
     </worldbody>
 </mujoco>

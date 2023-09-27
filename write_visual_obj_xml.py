@@ -22,8 +22,8 @@ for object_name in os.listdir(target_category):
         f.writelines(f"    </asset>\n")
 
         f.writelines(f"    <worldbody>\n")
-        f.writelines(f"        <body name=\"{object_name}_target\" pos=\"0.0 0.0 {z_str}\">\n")
-        f.writelines(f"            <geom type=\"mesh\" contype=\"0\" conaffinity=\"0\" mass=\"0\" name=\"{object_name}_visual_target\" class=\"object_visual\" mesh=\"{object_name}\" rgba=\"0 1 0 0.125\" />\n")
+        f.writelines(f"        <body name=\"object_target\" pos=\"0.0 0.0 {z_str}\">\n")
+        f.writelines(f"            <geom type=\"mesh\" contype=\"0\" conaffinity=\"0\" mass=\"0\" name=\"target_visual\" class=\"object_visual\" mesh=\"{object_name}\" rgba=\"0 1 0 0.125\" />\n")
         f.writelines(f"        </body>\n")
         f.writelines(f"    </worldbody>\n")
         f.writelines(f"</mujoco>")

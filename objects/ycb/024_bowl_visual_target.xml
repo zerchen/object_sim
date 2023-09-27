@@ -4,8 +4,8 @@
         <mesh name="024_bowl" file="../../ycb/024_bowl/textured.obj"  />
     </asset>
     <worldbody>
-        <body name="024_bowl_target" pos="0.0 0.0 0.0051">
-            <geom type="mesh" contype="0" conaffinity="0" mass="0" name="024_bowl_visual_target" class="object_visual" mesh="024_bowl" rgba="0 1 0 0.125" />
+        <body name="object_target" pos="0.0 0.0 0.0051">
+            <geom type="mesh" contype="0" conaffinity="0" mass="0" name="target_visual" class="object_visual" mesh="024_bowl" rgba="0 1 0 0.125" />
         </body>
     </worldbody>
 </mujoco>

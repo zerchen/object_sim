@@ -4,8 +4,8 @@
         <mesh name="052_extra_large_clamp" file="../../ycb/052_extra_large_clamp/textured.obj"  />
     </asset>
     <worldbody>
-        <body name="052_extra_large_clamp_target" pos="0.0 0.0 -0.0067">
-            <geom type="mesh" contype="0" conaffinity="0" mass="0" name="052_extra_large_clamp_visual_target" class="object_visual" mesh="052_extra_large_clamp" rgba="0 1 0 0.125" />
+        <body name="object_target" pos="0.0 0.0 -0.0067">
+            <geom type="mesh" contype="0" conaffinity="0" mass="0" name="target_visual" class="object_visual" mesh="052_extra_large_clamp" rgba="0 1 0 0.125" />
         </body>
     </worldbody>
 </mujoco>

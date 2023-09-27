@@ -4,8 +4,8 @@
         <mesh name="040_large_marker" file="../../ycb/040_large_marker/textured.obj"  />
     </asset>
     <worldbody>
-        <body name="040_large_marker_target" pos="0.0 0.0 -0.0154">
-            <geom type="mesh" contype="0" conaffinity="0" mass="0" name="040_large_marker_visual_target" class="object_visual" mesh="040_large_marker" rgba="0 1 0 0.125" />
+        <body name="object_target" pos="0.0 0.0 -0.0154">
+            <geom type="mesh" contype="0" conaffinity="0" mass="0" name="target_visual" class="object_visual" mesh="040_large_marker" rgba="0 1 0 0.125" />
         </body>
     </worldbody>
 </mujoco>

@@ -6,16 +6,16 @@
         <mesh name="contact1" file="../../ycb/008_pudding_box/contact1.stl"  />
     </asset>
     <worldbody>
-        <body name="008_pudding_box" pos="0.0 0.0 -0.0054">
+        <body name="object_entity" pos="0.0 0.0 -0.0054">
             <joint name="OBJTx" pos="0 0 0" axis="1 0 0" type="slide" class="freejoint" />
             <joint name="OBJTy" pos="0 0 0" axis="0 1 0" type="slide" class="freejoint" />
             <joint name="OBJTz" pos="0 0 0" axis="0 0 1" type="slide" class="freejoint" />
             <joint name="OBJRx" pos="0 0 0" axis="1 0 0" class="freejoint" />
             <joint name="OBJRy" pos="0 0 0" axis="0 1 0" class="freejoint" />
             <joint name="OBJRz" pos="0 0 0" axis="0 0 1" class="freejoint" />
-            <geom name="008_pudding_box_visual" class="object_visual" mesh="008_pudding_box" />
-            <geom name="008_pudding_box_contact0" class="object_contact" mesh="contact0" />
-            <geom name="008_pudding_box_contact1" class="object_contact" mesh="contact1" />
+            <geom name="entity_visual" class="object_visual" mesh="008_pudding_box" />
+            <geom name="entity_contact0" class="object_contact" mesh="contact0" />
+            <geom name="entity_contact1" class="object_contact" mesh="contact1" />
         </body>
     </worldbody>
 </mujoco>
