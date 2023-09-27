@@ -77,9 +77,10 @@ def main(object_name="006_mustard_bottle", object_category="ycb"):
     for object_name in sorted(object_name_list):
         env = TableEnv()
         object_model = object_generator(f"objects/{object_category}/{object_name}.xml")()
+        object_model.mjcf_model.worldbody.add('body', name='object_marker', pos=np.array([0.2, 0.2, 0.2]))
+        object_model.mjcf_model.worldbody.body['object_marker'].add('geom', contype='0', conaffinity='0', mass='0', name='target_visual', mesh=object_model.mjcf_model.worldbody.body['object_entity'].geom['entity_visual'].mesh, rgba=np.array([0, 1, 0, 0.125]))
+        object_model.mjcf_model.worldbody.body['object_marker'].geom['target_visual'].type = "mesh"
         env.attach(object_model)
-        visual_target_model = object_generator(f"objects/{object_category}/{object_name}_visual_target.xml")(pos=np.array([0.2, 0.2, 0.2]))
-        env.attach(visual_target_model)
         mjcf.export_with_assets(env.mjcf_model, out_dir="cache")
 
         model = mujoco.MjModel.from_xml_path('cache/table-environment.xml')
