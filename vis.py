@@ -76,7 +76,7 @@ def main(object_name="006_mustard_bottle", object_category="ycb"):
 
     for object_name in sorted(object_name_list):
         env = TableEnv()
-        object_model = object_generator(f"objects/{object_category}/{object_name}.xml")()
+        object_model = object_generator(f"objects/{object_category}/{object_name}.xml")(pos=[0.2143537402153015, -0.019758164882659912, 0.05114641413092613], quat=[-0.3133416802690919, -0.2537873738720128, 0.6682298453942764, 0.6252022307542973])
         object_model.mjcf_model.worldbody.add('body', name='object_marker', pos=np.array([0.2, 0.2, 0.2]))
         object_model.mjcf_model.worldbody.body['object_marker'].add('geom', contype='0', conaffinity='0', mass='0', name='target_visual', mesh=object_model.mjcf_model.worldbody.body['object_entity'].geom['entity_visual'].mesh, rgba=np.array([0, 1, 0, 0.125]))
         object_model.mjcf_model.worldbody.body['object_marker'].geom['target_visual'].type = "mesh"
@@ -88,7 +88,7 @@ def main(object_name="006_mustard_bottle", object_category="ycb"):
         viewer = mujoco_viewer.MujocoViewer(model, data)
 
         # simulate and render
-        for _ in range(300):
+        for _ in range(1000):
             if viewer.is_alive:
                 mujoco.mj_step(model, data)
                 viewer.render()
