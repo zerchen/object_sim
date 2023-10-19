@@ -81,10 +81,10 @@ def main(object_name="006_mustard_bottle", object_category="ycb"):
         object_model.mjcf_model.worldbody.body['object_marker'].add('geom', contype='0', conaffinity='0', mass='0', name='target_visual', mesh=object_model.mjcf_model.worldbody.body['object_entity'].geom['entity_visual'].mesh, rgba=np.array([0, 1, 0, 0.125]))
         object_model.mjcf_model.worldbody.body['object_marker'].geom['target_visual'].type = "mesh"
         env.attach(object_model)
-        mjcf.export_with_assets(env.mjcf_model, out_dir="cache")
 
-        model = mujoco.MjModel.from_xml_path('cache/table-environment.xml')
-        data = mujoco.MjData(model)
+        physics = mjcf.Physics.from_mjcf_model(env.mjcf_model)
+        model = physics.model.ptr
+        data = physics.data.ptr
         viewer = mujoco_viewer.MujocoViewer(model, data)
 
         # simulate and render
