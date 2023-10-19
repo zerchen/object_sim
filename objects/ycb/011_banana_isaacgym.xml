@@ -1,0 +1,27 @@
+<mujoco model="011_banana">
+    <include file="../../common.xml"/>
+    <asset>
+        <mesh name="011_banana" file="../../ycb/011_banana/textured.obj"  />
+        <mesh name="contact0" file="../../ycb/011_banana/contact0.stl"  />
+        <mesh name="contact1" file="../../ycb/011_banana/contact1.stl"  />
+        <mesh name="contact2" file="../../ycb/011_banana/contact2.stl"  />
+        <mesh name="contact3" file="../../ycb/011_banana/contact3.stl"  />
+    </asset>
+    <worldbody>
+        <body name="object" pos="0.0 0.0 -0.0053">
+            <body name="object_entity">
+                <joint name="OBJTx" pos="0 0 0" axis="1 0 0" type="slide" class="freejoint" />
+                <joint name="OBJTy" pos="0 0 0" axis="0 1 0" type="slide" class="freejoint" />
+                <joint name="OBJTz" pos="0 0 0" axis="0 0 1" type="slide" class="freejoint" />
+                <joint name="OBJRx" pos="0 0 0" axis="1 0 0" class="freejoint" />
+                <joint name="OBJRy" pos="0 0 0" axis="0 1 0" class="freejoint" />
+                <joint name="OBJRz" pos="0 0 0" axis="0 0 1" class="freejoint" />
+                <geom name="entity_visual" class="object_visual" mesh="011_banana" />
+                <geom name="entity_contact0" class="object_contact" mesh="contact0" />
+                <geom name="entity_contact1" class="object_contact" mesh="contact1" />
+                <geom name="entity_contact2" class="object_contact" mesh="contact2" />
+                <geom name="entity_contact3" class="object_contact" mesh="contact3" />
+            </body>
+        </body>
+    </worldbody>
+</mujoco>

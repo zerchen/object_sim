@@ -1,0 +1,23 @@
+<mujoco model="003_cracker_box">
+    <include file="../../common.xml"/>
+    <asset>
+        <mesh name="003_cracker_box" file="../../ycb/003_cracker_box/textured.obj"  />
+        <mesh name="contact0" file="../../ycb/003_cracker_box/contact0.stl"  />
+        <mesh name="contact1" file="../../ycb/003_cracker_box/contact1.stl"  />
+    </asset>
+    <worldbody>
+        <body name="object" pos="0.0 0.0 0.0813">
+            <body name="object_entity">
+                <joint name="OBJTx" pos="0 0 0" axis="1 0 0" type="slide" class="freejoint" />
+                <joint name="OBJTy" pos="0 0 0" axis="0 1 0" type="slide" class="freejoint" />
+                <joint name="OBJTz" pos="0 0 0" axis="0 0 1" type="slide" class="freejoint" />
+                <joint name="OBJRx" pos="0 0 0" axis="1 0 0" class="freejoint" />
+                <joint name="OBJRy" pos="0 0 0" axis="0 1 0" class="freejoint" />
+                <joint name="OBJRz" pos="0 0 0" axis="0 0 1" class="freejoint" />
+                <geom name="entity_visual" class="object_visual" mesh="003_cracker_box" />
+                <geom name="entity_contact0" class="object_contact" mesh="contact0" />
+                <geom name="entity_contact1" class="object_contact" mesh="contact1" />
+            </body>
+        </body>
+    </worldbody>
+</mujoco>

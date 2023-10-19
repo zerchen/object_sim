@@ -1,0 +1,167 @@
+<mujoco model="025_mug">
+    <include file="../../common.xml"/>
+    <asset>
+        <mesh name="025_mug" file="../../ycb/025_mug/textured.obj"  />
+        <mesh name="contact0" file="../../ycb/025_mug/contact0.stl"  />
+        <mesh name="contact1" file="../../ycb/025_mug/contact1.stl"  />
+        <mesh name="contact2" file="../../ycb/025_mug/contact2.stl"  />
+        <mesh name="contact3" file="../../ycb/025_mug/contact3.stl"  />
+        <mesh name="contact4" file="../../ycb/025_mug/contact4.stl"  />
+        <mesh name="contact5" file="../../ycb/025_mug/contact5.stl"  />
+        <mesh name="contact6" file="../../ycb/025_mug/contact6.stl"  />
+        <mesh name="contact7" file="../../ycb/025_mug/contact7.stl"  />
+        <mesh name="contact8" file="../../ycb/025_mug/contact8.stl"  />
+        <mesh name="contact9" file="../../ycb/025_mug/contact9.stl"  />
+        <mesh name="contact10" file="../../ycb/025_mug/contact10.stl"  />
+        <mesh name="contact11" file="../../ycb/025_mug/contact11.stl"  />
+        <mesh name="contact12" file="../../ycb/025_mug/contact12.stl"  />
+        <mesh name="contact13" file="../../ycb/025_mug/contact13.stl"  />
+        <mesh name="contact14" file="../../ycb/025_mug/contact14.stl"  />
+        <mesh name="contact15" file="../../ycb/025_mug/contact15.stl"  />
+        <mesh name="contact16" file="../../ycb/025_mug/contact16.stl"  />
+        <mesh name="contact17" file="../../ycb/025_mug/contact17.stl"  />
+        <mesh name="contact18" file="../../ycb/025_mug/contact18.stl"  />
+        <mesh name="contact19" file="../../ycb/025_mug/contact19.stl"  />
+        <mesh name="contact20" file="../../ycb/025_mug/contact20.stl"  />
+        <mesh name="contact21" file="../../ycb/025_mug/contact21.stl"  />
+        <mesh name="contact22" file="../../ycb/025_mug/contact22.stl"  />
+        <mesh name="contact23" file="../../ycb/025_mug/contact23.stl"  />
+        <mesh name="contact24" file="../../ycb/025_mug/contact24.stl"  />
+        <mesh name="contact25" file="../../ycb/025_mug/contact25.stl"  />
+        <mesh name="contact26" file="../../ycb/025_mug/contact26.stl"  />
+        <mesh name="contact27" file="../../ycb/025_mug/contact27.stl"  />
+        <mesh name="contact28" file="../../ycb/025_mug/contact28.stl"  />
+        <mesh name="contact29" file="../../ycb/025_mug/contact29.stl"  />
+        <mesh name="contact30" file="../../ycb/025_mug/contact30.stl"  />
+        <mesh name="contact31" file="../../ycb/025_mug/contact31.stl"  />
+        <mesh name="contact32" file="../../ycb/025_mug/contact32.stl"  />
+        <mesh name="contact33" file="../../ycb/025_mug/contact33.stl"  />
+        <mesh name="contact34" file="../../ycb/025_mug/contact34.stl"  />
+        <mesh name="contact35" file="../../ycb/025_mug/contact35.stl"  />
+        <mesh name="contact36" file="../../ycb/025_mug/contact36.stl"  />
+        <mesh name="contact37" file="../../ycb/025_mug/contact37.stl"  />
+        <mesh name="contact38" file="../../ycb/025_mug/contact38.stl"  />
+        <mesh name="contact39" file="../../ycb/025_mug/contact39.stl"  />
+        <mesh name="contact40" file="../../ycb/025_mug/contact40.stl"  />
+        <mesh name="contact41" file="../../ycb/025_mug/contact41.stl"  />
+        <mesh name="contact42" file="../../ycb/025_mug/contact42.stl"  />
+        <mesh name="contact43" file="../../ycb/025_mug/contact43.stl"  />
+        <mesh name="contact44" file="../../ycb/025_mug/contact44.stl"  />
+        <mesh name="contact45" file="../../ycb/025_mug/contact45.stl"  />
+        <mesh name="contact46" file="../../ycb/025_mug/contact46.stl"  />
+        <mesh name="contact47" file="../../ycb/025_mug/contact47.stl"  />
+        <mesh name="contact48" file="../../ycb/025_mug/contact48.stl"  />
+        <mesh name="contact49" file="../../ycb/025_mug/contact49.stl"  />
+        <mesh name="contact50" file="../../ycb/025_mug/contact50.stl"  />
+        <mesh name="contact51" file="../../ycb/025_mug/contact51.stl"  />
+        <mesh name="contact52" file="../../ycb/025_mug/contact52.stl"  />
+        <mesh name="contact53" file="../../ycb/025_mug/contact53.stl"  />
+        <mesh name="contact54" file="../../ycb/025_mug/contact54.stl"  />
+        <mesh name="contact55" file="../../ycb/025_mug/contact55.stl"  />
+        <mesh name="contact56" file="../../ycb/025_mug/contact56.stl"  />
+        <mesh name="contact57" file="../../ycb/025_mug/contact57.stl"  />
+        <mesh name="contact58" file="../../ycb/025_mug/contact58.stl"  />
+        <mesh name="contact59" file="../../ycb/025_mug/contact59.stl"  />
+        <mesh name="contact60" file="../../ycb/025_mug/contact60.stl"  />
+        <mesh name="contact61" file="../../ycb/025_mug/contact61.stl"  />
+        <mesh name="contact62" file="../../ycb/025_mug/contact62.stl"  />
+        <mesh name="contact63" file="../../ycb/025_mug/contact63.stl"  />
+        <mesh name="contact64" file="../../ycb/025_mug/contact64.stl"  />
+        <mesh name="contact65" file="../../ycb/025_mug/contact65.stl"  />
+        <mesh name="contact66" file="../../ycb/025_mug/contact66.stl"  />
+        <mesh name="contact67" file="../../ycb/025_mug/contact67.stl"  />
+        <mesh name="contact68" file="../../ycb/025_mug/contact68.stl"  />
+        <mesh name="contact69" file="../../ycb/025_mug/contact69.stl"  />
+        <mesh name="contact70" file="../../ycb/025_mug/contact70.stl"  />
+        <mesh name="contact71" file="../../ycb/025_mug/contact71.stl"  />
+        <mesh name="contact72" file="../../ycb/025_mug/contact72.stl"  />
+        <mesh name="contact73" file="../../ycb/025_mug/contact73.stl"  />
+    </asset>
+    <worldbody>
+        <body name="object" pos="0.0 0.0 0.0198">
+            <body name="object_entity">
+                <joint name="OBJTx" pos="0 0 0" axis="1 0 0" type="slide" class="freejoint" />
+                <joint name="OBJTy" pos="0 0 0" axis="0 1 0" type="slide" class="freejoint" />
+                <joint name="OBJTz" pos="0 0 0" axis="0 0 1" type="slide" class="freejoint" />
+                <joint name="OBJRx" pos="0 0 0" axis="1 0 0" class="freejoint" />
+                <joint name="OBJRy" pos="0 0 0" axis="0 1 0" class="freejoint" />
+                <joint name="OBJRz" pos="0 0 0" axis="0 0 1" class="freejoint" />
+                <geom name="entity_visual" class="object_visual" mesh="025_mug" />
+                <geom name="entity_contact0" class="object_contact" mesh="contact0" />
+                <geom name="entity_contact1" class="object_contact" mesh="contact1" />
+                <geom name="entity_contact2" class="object_contact" mesh="contact2" />
+                <geom name="entity_contact3" class="object_contact" mesh="contact3" />
+                <geom name="entity_contact4" class="object_contact" mesh="contact4" />
+                <geom name="entity_contact5" class="object_contact" mesh="contact5" />
+                <geom name="entity_contact6" class="object_contact" mesh="contact6" />
+                <geom name="entity_contact7" class="object_contact" mesh="contact7" />
+                <geom name="entity_contact8" class="object_contact" mesh="contact8" />
+                <geom name="entity_contact9" class="object_contact" mesh="contact9" />
+                <geom name="entity_contact10" class="object_contact" mesh="contact10" />
+                <geom name="entity_contact11" class="object_contact" mesh="contact11" />
+                <geom name="entity_contact12" class="object_contact" mesh="contact12" />
+                <geom name="entity_contact13" class="object_contact" mesh="contact13" />
+                <geom name="entity_contact14" class="object_contact" mesh="contact14" />
+                <geom name="entity_contact15" class="object_contact" mesh="contact15" />
+                <geom name="entity_contact16" class="object_contact" mesh="contact16" />
+                <geom name="entity_contact17" class="object_contact" mesh="contact17" />
+                <geom name="entity_contact18" class="object_contact" mesh="contact18" />
+                <geom name="entity_contact19" class="object_contact" mesh="contact19" />
+                <geom name="entity_contact20" class="object_contact" mesh="contact20" />
+                <geom name="entity_contact21" class="object_contact" mesh="contact21" />
+                <geom name="entity_contact22" class="object_contact" mesh="contact22" />
+                <geom name="entity_contact23" class="object_contact" mesh="contact23" />
+                <geom name="entity_contact24" class="object_contact" mesh="contact24" />
+                <geom name="entity_contact25" class="object_contact" mesh="contact25" />
+                <geom name="entity_contact26" class="object_contact" mesh="contact26" />
+                <geom name="entity_contact27" class="object_contact" mesh="contact27" />
+                <geom name="entity_contact28" class="object_contact" mesh="contact28" />
+                <geom name="entity_contact29" class="object_contact" mesh="contact29" />
+                <geom name="entity_contact30" class="object_contact" mesh="contact30" />
+                <geom name="entity_contact31" class="object_contact" mesh="contact31" />
+                <geom name="entity_contact32" class="object_contact" mesh="contact32" />
+                <geom name="entity_contact33" class="object_contact" mesh="contact33" />
+                <geom name="entity_contact34" class="object_contact" mesh="contact34" />
+                <geom name="entity_contact35" class="object_contact" mesh="contact35" />
+                <geom name="entity_contact36" class="object_contact" mesh="contact36" />
+                <geom name="entity_contact37" class="object_contact" mesh="contact37" />
+                <geom name="entity_contact38" class="object_contact" mesh="contact38" />
+                <geom name="entity_contact39" class="object_contact" mesh="contact39" />
+                <geom name="entity_contact40" class="object_contact" mesh="contact40" />
+                <geom name="entity_contact41" class="object_contact" mesh="contact41" />
+                <geom name="entity_contact42" class="object_contact" mesh="contact42" />
+                <geom name="entity_contact43" class="object_contact" mesh="contact43" />
+                <geom name="entity_contact44" class="object_contact" mesh="contact44" />
+                <geom name="entity_contact45" class="object_contact" mesh="contact45" />
+                <geom name="entity_contact46" class="object_contact" mesh="contact46" />
+                <geom name="entity_contact47" class="object_contact" mesh="contact47" />
+                <geom name="entity_contact48" class="object_contact" mesh="contact48" />
+                <geom name="entity_contact49" class="object_contact" mesh="contact49" />
+                <geom name="entity_contact50" class="object_contact" mesh="contact50" />
+                <geom name="entity_contact51" class="object_contact" mesh="contact51" />
+                <geom name="entity_contact52" class="object_contact" mesh="contact52" />
+                <geom name="entity_contact53" class="object_contact" mesh="contact53" />
+                <geom name="entity_contact54" class="object_contact" mesh="contact54" />
+                <geom name="entity_contact55" class="object_contact" mesh="contact55" />
+                <geom name="entity_contact56" class="object_contact" mesh="contact56" />
+                <geom name="entity_contact57" class="object_contact" mesh="contact57" />
+                <geom name="entity_contact58" class="object_contact" mesh="contact58" />
+                <geom name="entity_contact59" class="object_contact" mesh="contact59" />
+                <geom name="entity_contact60" class="object_contact" mesh="contact60" />
+                <geom name="entity_contact61" class="object_contact" mesh="contact61" />
+                <geom name="entity_contact62" class="object_contact" mesh="contact62" />
+                <geom name="entity_contact63" class="object_contact" mesh="contact63" />
+                <geom name="entity_contact64" class="object_contact" mesh="contact64" />
+                <geom name="entity_contact65" class="object_contact" mesh="contact65" />
+                <geom name="entity_contact66" class="object_contact" mesh="contact66" />
+                <geom name="entity_contact67" class="object_contact" mesh="contact67" />
+                <geom name="entity_contact68" class="object_contact" mesh="contact68" />
+                <geom name="entity_contact69" class="object_contact" mesh="contact69" />
+                <geom name="entity_contact70" class="object_contact" mesh="contact70" />
+                <geom name="entity_contact71" class="object_contact" mesh="contact71" />
+                <geom name="entity_contact72" class="object_contact" mesh="contact72" />
+                <geom name="entity_contact73" class="object_contact" mesh="contact73" />
+            </body>
+        </body>
+    </worldbody>
+</mujoco>

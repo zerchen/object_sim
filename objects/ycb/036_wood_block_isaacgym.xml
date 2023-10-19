@@ -1,0 +1,21 @@
+<mujoco model="036_wood_block">
+    <include file="../../common.xml"/>
+    <asset>
+        <mesh name="036_wood_block" file="../../ycb/036_wood_block/textured.obj"  />
+        <mesh name="contact0" file="../../ycb/036_wood_block/contact0.stl"  />
+    </asset>
+    <worldbody>
+        <body name="object" pos="0.0 0.0 0.078">
+            <body name="object_entity">
+                <joint name="OBJTx" pos="0 0 0" axis="1 0 0" type="slide" class="freejoint" />
+                <joint name="OBJTy" pos="0 0 0" axis="0 1 0" type="slide" class="freejoint" />
+                <joint name="OBJTz" pos="0 0 0" axis="0 0 1" type="slide" class="freejoint" />
+                <joint name="OBJRx" pos="0 0 0" axis="1 0 0" class="freejoint" />
+                <joint name="OBJRy" pos="0 0 0" axis="0 1 0" class="freejoint" />
+                <joint name="OBJRz" pos="0 0 0" axis="0 0 1" class="freejoint" />
+                <geom name="entity_visual" class="object_visual" mesh="036_wood_block" />
+                <geom name="entity_contact0" class="object_contact" mesh="contact0" />
+            </body>
+        </body>
+    </worldbody>
+</mujoco>
