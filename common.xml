@@ -2,7 +2,7 @@
     <compiler angle="radian" />
 
     <asset>
-        <material name="MatObject" specular="0.75" shininess="0.1" reflectance="0.5" rgba="0.9 0.7 0.5 1" />
+        <material name="MatObject" specular="0.75" shininess="0.1" reflectance="0.5" rgba="1.0 1.0 1.0 1" />
     </asset>
 
     <default>
