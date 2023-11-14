@@ -2,8 +2,8 @@
     <include file="../../common.xml"/>
     <asset>
         <mesh name="004_sugar_box" file="../../ycb/004_sugar_box/textured.obj"  />
-        <mesh name="contact0" file="../../ycb/004_sugar_box/contact0.stl"  />
-        <mesh name="contact1" file="../../ycb/004_sugar_box/contact1.stl"  />
+	<!--<mesh name="contact0" file="../../ycb/004_sugar_box/contact0.stl"  />-->
+	<!--<mesh name="contact1" file="../../ycb/004_sugar_box/contact1.stl"  />-->
     </asset>
     <worldbody>
         <body name="object_entity" pos="0.0 0.0 0.0634">
@@ -14,8 +14,9 @@
             <joint name="OBJRy" pos="0 0 0" axis="0 1 0" class="freejoint" />
             <joint name="OBJRz" pos="0 0 0" axis="0 0 1" class="freejoint" />
             <geom name="entity_visual" class="object_visual" mesh="004_sugar_box" />
-            <geom name="entity_contact0" class="object_contact" mesh="contact0" />
-            <geom name="entity_contact1" class="object_contact" mesh="contact1" />
+	    <geom name="entity_contact0" class="object_contact" size="0.024748 0.047081 0.0880075" pos="0 0 0.04400375" type="box" />
+	    <!--<geom name="entity_contact0" class="object_contact" mesh="contact0" />-->
+	    <!--<geom name="entity_contact1" class="object_contact" mesh="contact1" />-->
         </body>
     </worldbody>
 </mujoco>
