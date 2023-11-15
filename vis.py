@@ -88,7 +88,7 @@ def main(object_name="006_mustard_bottle", object_category="ycb"):
         viewer = mujoco_viewer.MujocoViewer(model, data)
 
         # simulate and render
-        for _ in range(300):
+        for _ in range(1000):
             if viewer.is_alive:
                 mujoco.mj_step(model, data)
                 viewer.render()
