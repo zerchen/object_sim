@@ -17,7 +17,7 @@
 	</default>
 
 	<default class="object_contact">
-	    <geom type="mesh" density="1250" condim="4" rgba="0 0 1 1" />
+	    <geom type="mesh" density="1250" condim="4" rgba="0 0 1 0" />
 	</default>
         
         <default class="freejoint">
