@@ -4,7 +4,6 @@
         <mesh name="006_mustard_bottle" file="../../ycb/006_mustard_bottle/textured.obj"  />
         <mesh name="contact0" file="../../ycb/006_mustard_bottle/contact0.stl"  />
         <mesh name="contact1" file="../../ycb/006_mustard_bottle/contact1.stl"  />
-        <mesh name="contact2" file="../../ycb/006_mustard_bottle/contact2.stl"  />
     </asset>
     <worldbody>
         <body name="object_entity" pos="0.0 0.0 0.0865">
@@ -17,7 +16,6 @@
             <geom name="entity_visual" class="object_visual" mesh="006_mustard_bottle" />
             <geom name="entity_contact0" class="object_contact" mesh="contact0" />
             <geom name="entity_contact1" class="object_contact" mesh="contact1" />
-            <geom name="entity_contact2" class="object_contact" mesh="contact2" />
         </body>
     </worldbody>
 </mujoco>
