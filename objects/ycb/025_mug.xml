@@ -2,22 +2,22 @@
     <include file="../../common.xml"/>
     <asset>
         <mesh name="025_mug" file="../../ycb/025_mug/textured.obj"  />
-        <mesh name="contact0" file="../../ycb/025_mug/contact0.stl"  />
-        <mesh name="contact1" file="../../ycb/025_mug/contact1.stl"  />
-        <mesh name="contact2" file="../../ycb/025_mug/contact2.stl"  />
-        <mesh name="contact3" file="../../ycb/025_mug/contact3.stl"  />
-        <mesh name="contact4" file="../../ycb/025_mug/contact4.stl"  />
-        <mesh name="contact5" file="../../ycb/025_mug/contact5.stl"  />
-        <mesh name="contact6" file="../../ycb/025_mug/contact6.stl"  />
-        <mesh name="contact7" file="../../ycb/025_mug/contact7.stl"  />
-        <mesh name="contact8" file="../../ycb/025_mug/contact8.stl"  />
-        <mesh name="contact9" file="../../ycb/025_mug/contact9.stl"  />
-        <mesh name="contact10" file="../../ycb/025_mug/contact10.stl"  />
-        <mesh name="contact11" file="../../ycb/025_mug/contact11.stl"  />
-        <mesh name="contact12" file="../../ycb/025_mug/contact12.stl"  />
-        <mesh name="contact13" file="../../ycb/025_mug/contact13.stl"  />
-        <mesh name="contact14" file="../../ycb/025_mug/contact14.stl"  />
-        <mesh name="contact15" file="../../ycb/025_mug/contact15.stl"  />
+        <!--<mesh name="contact0" file="../../ycb/025_mug/contact0.stl"  />-->
+        <!--<mesh name="contact1" file="../../ycb/025_mug/contact1.stl"  />-->
+        <!--<mesh name="contact2" file="../../ycb/025_mug/contact2.stl"  />-->
+        <!--<mesh name="contact3" file="../../ycb/025_mug/contact3.stl"  />-->
+        <!--<mesh name="contact4" file="../../ycb/025_mug/contact4.stl"  />-->
+        <!--<mesh name="contact5" file="../../ycb/025_mug/contact5.stl"  />-->
+        <!--<mesh name="contact6" file="../../ycb/025_mug/contact6.stl"  />-->
+        <!--<mesh name="contact7" file="../../ycb/025_mug/contact7.stl"  />-->
+        <!--<mesh name="contact8" file="../../ycb/025_mug/contact8.stl"  />-->
+        <!--<mesh name="contact9" file="../../ycb/025_mug/contact9.stl"  />-->
+        <!--<mesh name="contact10" file="../../ycb/025_mug/contact10.stl"  />-->
+        <!--<mesh name="contact11" file="../../ycb/025_mug/contact11.stl"  />-->
+        <!--<mesh name="contact12" file="../../ycb/025_mug/contact12.stl"  />-->
+        <!--<mesh name="contact13" file="../../ycb/025_mug/contact13.stl"  />-->
+        <!--<mesh name="contact14" file="../../ycb/025_mug/contact14.stl"  />-->
+        <!--<mesh name="contact15" file="../../ycb/025_mug/contact15.stl"  />-->
     </asset>
     <worldbody>
         <body name="object_entity" pos="0.0 0.0 0.0198">
@@ -28,22 +28,38 @@
             <joint name="OBJRy" pos="0 0 0" axis="0 1 0" class="freejoint" />
             <joint name="OBJRz" pos="0 0 0" axis="0 0 1" class="freejoint" />
             <geom name="entity_visual" class="object_visual" mesh="025_mug" />
-            <geom name="entity_contact0" class="object_contact" mesh="contact0" />
-            <geom name="entity_contact1" class="object_contact" mesh="contact1" />
-            <geom name="entity_contact2" class="object_contact" mesh="contact2" />
-            <geom name="entity_contact3" class="object_contact" mesh="contact3" />
-            <geom name="entity_contact4" class="object_contact" mesh="contact4" />
-            <geom name="entity_contact5" class="object_contact" mesh="contact5" />
-            <geom name="entity_contact6" class="object_contact" mesh="contact6" />
-            <geom name="entity_contact7" class="object_contact" mesh="contact7" />
-            <geom name="entity_contact8" class="object_contact" mesh="contact8" />
-            <geom name="entity_contact9" class="object_contact" mesh="contact9" />
-            <geom name="entity_contact10" class="object_contact" mesh="contact10" />
-            <geom name="entity_contact11" class="object_contact" mesh="contact11" />
-            <geom name="entity_contact12" class="object_contact" mesh="contact12" />
-            <geom name="entity_contact13" class="object_contact" mesh="contact13" />
-            <geom name="entity_contact14" class="object_contact" mesh="contact14" />
-            <geom name="entity_contact15" class="object_contact" mesh="contact15" />
+	    <geom name="entity_contact0" class="object_contact" size="0.014 0.0025 0.04" pos="-0.006 -0.042 0.0015" quat="1 0 0 0" type="box" />
+	    <geom name="entity_contact1" class="object_contact" size="0.014 0.0025 0.04" pos="0.0165 -0.03637307 0.0015" quat="0.96592583 0. 0. 0.25881905" type="box" />
+	    <geom name="entity_contact2" class="object_contact" size="0.014 0.0025 0.04" pos="0.032971143170299734 -0.021000000000000005 0.0015" quat="0.8660254037844387 0.0 0.0 0.49999999999999994" type="box" />
+	    <geom name="entity_contact3" class="object_contact" size="0.014 0.0025 0.04" pos="0.039 -2.571758278209442e-18 0.0015" quat="0.7071067811865476 0.0 0.0 0.7071067811865475" type="box" />
+	    <geom name="entity_contact4" class="object_contact" size="0.014 0.0025 0.04" pos="0.03297114317029975 0.02099999999999999 0.0015" quat="0.5000000000000001 0.0 0.0 0.8660254037844386" type="box" />
+	    <geom name="entity_contact5" class="object_contact" size="0.014 0.0025 0.04" pos="0.016499999999999994 0.036373066958946425 0.0015" quat="0.25881904510252074 0.0 0.0 0.9659258262890683" type="box" />
+	    <geom name="entity_contact6" class="object_contact" size="0.014 0.0025 0.04" pos="-0.005999999999999995 0.042 0.0015" quat="6.123233995736766e-17 0.0 0.0 1.0" type="box" />
+	    <geom name="entity_contact7" class="object_contact" size="0.014 0.0025 0.04" pos="-0.028500000000000004 0.036373066958946425 0.0015" quat="-0.25881904510252085 0.0 0.0 0.9659258262890683" type="box" />
+	    <geom name="entity_contact8" class="object_contact" size="0.014 0.0025 0.04" pos="-0.044971143170299724 0.02100000000000002 0.0015" quat="-0.4999999999999998 0.0 0.0 0.8660254037844388" type="box" />
+	    <geom name="entity_contact9" class="object_contact" size="0.014 0.0025 0.04" pos="-0.051 7.715274834628325e-18 0.0015" quat="-0.7071067811865475 0.0 0.0 0.7071067811865476" type="box" />
+	    <geom name="entity_contact10" class="object_contact" size="0.014 0.0025 0.04" pos="-0.04497114317029973 -0.021 0.0015" quat="-0.8660254037844387 0.0 0.0 0.49999999999999994" type="box" />
+	    <geom name="entity_contact11" class="object_contact" size="0.014 0.0025 0.04" pos="-0.02850000000000002 -0.03637306695894641 0.0015" quat="-0.9659258262890682 0.0 0.0 0.258819045102521" type="box" />
+	    <geom name="entity_contact12" class="object_contact" size="0.0125 0.006 0.004" pos="0.054 0 0.03" quat="0.93969262 0. 0.34202014 0." type="box" />
+	    <geom name="entity_contact13" class="object_contact" size="0.0125 0.006 0.004" pos="0.054 0 -0.02" quat="0.93969262 -0. -0.34202014 -0." type="box" />
+	    <geom name="entity_contact14" class="object_contact" size="0.004 0.006 0.014" pos="0.062 0.00 0.005" type="box" />
+	    <geom name="entity_contact15" class="object_contact" size="0.0425 0.005" pos="0 0 -0.033" type="cylinder" />
+            <!--<geom name="entity_contact0" class="object_contact" mesh="contact0" />-->
+            <!--<geom name="entity_contact1" class="object_contact" mesh="contact1" />-->
+            <!--<geom name="entity_contact2" class="object_contact" mesh="contact2" />-->
+            <!--<geom name="entity_contact3" class="object_contact" mesh="contact3" />-->
+            <!--<geom name="entity_contact4" class="object_contact" mesh="contact4" />-->
+            <!--<geom name="entity_contact5" class="object_contact" mesh="contact5" />-->
+            <!--<geom name="entity_contact6" class="object_contact" mesh="contact6" />-->
+            <!--<geom name="entity_contact7" class="object_contact" mesh="contact7" />-->
+            <!--<geom name="entity_contact8" class="object_contact" mesh="contact8" />-->
+            <!--<geom name="entity_contact9" class="object_contact" mesh="contact9" />-->
+            <!--<geom name="entity_contact10" class="object_contact" mesh="contact10" />-->
+            <!--<geom name="entity_contact11" class="object_contact" mesh="contact11" />-->
+            <!--<geom name="entity_contact12" class="object_contact" mesh="contact12" />-->
+            <!--<geom name="entity_contact13" class="object_contact" mesh="contact13" />-->
+            <!--<geom name="entity_contact14" class="object_contact" mesh="contact14" />-->
+            <!--<geom name="entity_contact15" class="object_contact" mesh="contact15" />-->
         </body>
     </worldbody>
 </mujoco>
