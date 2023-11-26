@@ -42,7 +42,7 @@
 	    <geom name="entity_contact11" class="object_contact" size="0.014 0.0025 0.04" pos="-0.02850000000000002 -0.03637306695894641 0.0015" quat="-0.9659258262890682 0.0 0.0 0.258819045102521" type="box" />
 	    <geom name="entity_contact12" class="object_contact" size="0.0125 0.006 0.004" pos="0.054 0 0.03" quat="0.93969262 0. 0.34202014 0." type="box" />
 	    <geom name="entity_contact13" class="object_contact" size="0.0125 0.006 0.004" pos="0.054 0 -0.02" quat="0.93969262 -0. -0.34202014 -0." type="box" />
-	    <geom name="entity_contact14" class="object_contact" size="0.004 0.006 0.014" pos="0.062 0.00 0.005" type="box" />
+	    <geom name="entity_contact14" class="object_contact" size="0.004 0.006 0.02" pos="0.062 0.00 0.005" type="box" />
 	    <geom name="entity_contact15" class="object_contact" size="0.0425 0.005" pos="0 0 -0.033" type="cylinder" />
             <!--<geom name="entity_contact0" class="object_contact" mesh="contact0" />-->
             <!--<geom name="entity_contact1" class="object_contact" mesh="contact1" />-->
