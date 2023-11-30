@@ -2,7 +2,7 @@
     <include file='./common.xml'/>
 
     <option iterations="20" noslip_iterations="20" timestep="0.0025" cone="elliptic" impratio="300" />
-    <size njmax="1000" nconmax="100" nstack="600000" />
+    <!--<size njmax="1000" nconmax="100" nstack="600000" />-->
     <visual>
         <global offwidth="3024" offheight="1680" />
         <quality shadowsize="4096" offsamples="8" />
@@ -19,8 +19,8 @@
         <material name="MatBrick" reflectance="0" texture="texbrick" texrepeat="1 2" texuniform="false"/>
         <material name="granite" texture="granite" rgba="0.8 0.8 0.8 1" />
 
-        <mesh file="./scene/wall.stl" scale="0.002 0.002 0.0002"/>
-        <mesh file="./scene/skyline.stl" scale="2 2 1"/>
+	<mesh file="./meshes/scene/wall.stl" scale="0.002 0.002 0.0002"/>
+	<mesh file="./meshes/scene/skyline.stl" scale="2 2 1"/>
     </asset>
 
     <default>

@@ -1,30 +1,15 @@
 from dm_control import mjcf
 from dm_control.rl import control
 from dm_control.mjcf import debugging
+from physics import physics_from_mjcf
+from robots import get_robot
 from fire import Fire
+from base import MjModel
 import numpy as np
 import mujoco_viewer
 import mujoco
 import os
 
-
-class MjModel(object):
-    """ """
-
-    def __init__(self, mjcf_model):
-        self._mjcf_model = mjcf_model
-
-    def attach(self, other):
-        """ """
-        self.mjcf_model.attach(other.mjcf_model)
-        other._post_attach(self.mjcf_model)
-
-    @property
-    def mjcf_model(self):
-        return self._mjcf_model
-
-    def _post_attach(self, base_mjfc_model):
-        """ """
 
 class BaseEnv(MjModel):
     def __init__(self, xml_path):
@@ -76,21 +61,27 @@ def main(object_name="006_mustard_bottle", object_category="ycb"):
 
     for object_name in sorted(object_name_list):
         env = TableEnv()
+        robot_model = get_robot('adroit')(limp=False)
+        env.attach(robot_model)
+
         object_model = object_generator(f"objects/{object_category}/{object_name}.xml")()
         object_model.mjcf_model.worldbody.add('body', name='object_marker', pos=np.array([0.2, 0.2, 0.2]))
         object_model.mjcf_model.worldbody.body['object_marker'].add('geom', contype='0', conaffinity='0', mass='0', name='target_visual', mesh=object_model.mjcf_model.worldbody.body['object_entity'].geom['entity_visual'].mesh, rgba=np.array([0, 1, 0, 0.125]))
         object_model.mjcf_model.worldbody.body['object_marker'].geom['target_visual'].type = "mesh"
         env.attach(object_model)
-        mjcf.export_with_assets(env.mjcf_model, out_dir="cache")
+        physics = physics_from_mjcf(env)
 
-        model = mujoco.MjModel.from_xml_path('cache/table-environment.xml')
-        data = mujoco.MjData(model)
+        model = physics.model.ptr
+        data = physics.data.ptr
         viewer = mujoco_viewer.MujocoViewer(model, data)
 
         # simulate and render
         for _ in range(1000):
             if viewer.is_alive:
-                mujoco.mj_step(model, data)
+                physics.data.qpos[:30] = np.zeros(30)
+                physics.data.qvel[:30] = np.zeros(30)
+
+                physics.step()
                 viewer.render()
             else:
                 break

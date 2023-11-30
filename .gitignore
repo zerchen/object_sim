@@ -1,6 +1,2 @@
 __pycache__
 *.swp
-cache/*.xml
-cache/*.stl
-cache/*.png
-cache/*.obj

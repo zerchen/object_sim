@@ -71,33 +71,32 @@ def main(traj_name='ycb-002_master_chef_can-20200709-subject-01-20200709_141754'
     hand_joint = np.array(traj_file['hand_joint'])
     pregrasp_joint = np.array(traj_file['s_0']['pregrasp']['position'])
 
-    object_translation[:, :2] -= init_object_translation[:2]
-    hand_joint[:, :, :2] -= init_object_translation[:2]
-    pregrasp_joint[:, :2] -= init_object_translation[:2]
-    init_object_translation[:2] -= init_object_translation[:2]
+    # object_translation[:, :2] -= init_object_translation[:2]
+    # hand_joint[:, :, :2] -= init_object_translation[:2]
+    # pregrasp_joint[:, :2] -= init_object_translation[:2]
+    # init_object_translation[:2] -= init_object_translation[:2]
 
-    beta = np.random.uniform(low=0.0, high=2*np.pi)
-    rot_matrix = np.array([[np.cos(beta), -np.sin(beta), 0], [np.sin(beta), np.cos(beta), 0], [0, 0, 1]])
-    object_translation = (rot_matrix @ object_translation.transpose(1, 0)).transpose(1, 0)
-    for idx in range(object_orientation.shape[0]):
-        object_orientation[idx] = Quaternion(matrix=(rot_matrix @ Quaternion(object_orientation[idx]).rotation_matrix)).elements
-    hand_joint = (rot_matrix[None] @ hand_joint.transpose(0, 2, 1)).transpose(0, 2, 1)
-    pregrasp_joint = (rot_matrix @ pregrasp_joint.transpose(1, 0)).transpose(1, 0)
-    init_object_translation = rot_matrix @ init_object_translation
-    init_object_orientation = Quaternion(matrix=rot_matrix @ Quaternion(init_object_orientation).rotation_matrix).elements
+    # beta = np.random.uniform(low=0.0, high=2*np.pi)
+    # rot_matrix = np.array([[np.cos(beta), -np.sin(beta), 0], [np.sin(beta), np.cos(beta), 0], [0, 0, 1]])
+    # object_translation = (rot_matrix @ object_translation.transpose(1, 0)).transpose(1, 0)
+    # for idx in range(object_orientation.shape[0]):
+        # object_orientation[idx] = Quaternion(matrix=(rot_matrix @ Quaternion(object_orientation[idx]).rotation_matrix)).elements
+    # hand_joint = (rot_matrix[None] @ hand_joint.transpose(0, 2, 1)).transpose(0, 2, 1)
+    # pregrasp_joint = (rot_matrix @ pregrasp_joint.transpose(1, 0)).transpose(1, 0)
+    # init_object_translation = rot_matrix @ init_object_translation
+    # init_object_orientation = Quaternion(matrix=rot_matrix @ Quaternion(init_object_orientation).rotation_matrix).elements
 
-    new_init_pos = np.random.uniform(low=-0.15, high=0.15, size=2)
-    object_translation[:, :2] += new_init_pos 
-    hand_joint[:, :, :2] += new_init_pos
-    pregrasp_joint[:, :2] += new_init_pos
-    init_object_translation[:2] += new_init_pos
+    # new_init_pos = np.random.uniform(low=-0.15, high=0.15, size=2)
+    # object_translation[:, :2] += new_init_pos 
+    # hand_joint[:, :, :2] += new_init_pos
+    # pregrasp_joint[:, :2] += new_init_pos
+    # init_object_translation[:2] += new_init_pos
 
     env = TableEnv()
     robot_model = get_robot('adroit')(limp=False)
     env.attach(robot_model)
 
     object_model = object_generator(f"objects/{object_category}/{object_name}.xml")(pos=init_object_translation, quat=init_object_orientation)
-
     object_model.mjcf_model.worldbody.add('body', name=f'hand_palm', pos=pregrasp_joint[0])
     object_model.mjcf_model.worldbody.body[f'hand_palm'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_palm_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
     object_model.mjcf_model.worldbody.add('body', name=f'hand_thumb', pos=pregrasp_joint[4])
@@ -111,12 +110,6 @@ def main(traj_name='ycb-002_master_chef_can-20200709-subject-01-20200709_141754'
     object_model.mjcf_model.worldbody.add('body', name=f'hand_little', pos=pregrasp_joint[20])
     object_model.mjcf_model.worldbody.body[f'hand_little'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_little_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
 
-    for idx, _ in enumerate(traj_file['object_translation'][1:]):
-        if idx % 1 == 0:
-            object_model.mjcf_model.worldbody.add('body', name=f'object_marker_{idx}', pos=object_translation[idx], quat=object_orientation[idx])
-            object_model.mjcf_model.worldbody.body[f'object_marker_{idx}'].add('geom', contype='0', conaffinity='0', mass='0', name=f'target_visual_{idx}', mesh=object_model.mjcf_model.worldbody.body['object_entity'].geom['entity_visual'].mesh, rgba=np.array([0.996, 0.878, 0.824, 0.125]))
-            object_model.mjcf_model.worldbody.body[f'object_marker_{idx}'].geom[f'target_visual_{idx}'].type = "mesh"
-
     env.attach(object_model)
     physics = physics_from_mjcf(env)
 
@@ -124,7 +117,7 @@ def main(traj_name='ycb-002_master_chef_can-20200709-subject-01-20200709_141754'
     data = physics.data.ptr
     viewer = mujoco_viewer.MujocoViewer(model, data)
 
-        # simulate and render
+    # simulate and render
     for _ in range(5000):
         if viewer.is_alive:
             physics.data.qpos[:30] = np.zeros(30)
