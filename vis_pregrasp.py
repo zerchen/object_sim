@@ -163,6 +163,22 @@ def main(traj_name=None):
         retarget_pose[:, 2] -= init_object_translation[1]
         init_object_translation[:2] -= init_object_translation[:2]
 
+        # beta = np.random.uniform(low=0.0, high=np.pi / 3)
+        # rot_matrix = np.array([[np.cos(beta), -np.sin(beta), 0], [np.sin(beta), np.cos(beta), 0], [0, 0, 1]])
+        # object_translation = (rot_matrix @ object_translation.transpose(1, 0)).transpose(1, 0)
+        # for idx in range(object_orientation.shape[0]):
+            # object_orientation[idx] = Quaternion(matrix=(rot_matrix @ Quaternion(object_orientation[idx]).rotation_matrix)).elements
+        # hand_joint = (rot_matrix[None] @ hand_joint.transpose(0, 2, 1)).transpose(0, 2, 1)
+        # pregrasp_joint = (rot_matrix @ pregrasp_joint.transpose(1, 0)).transpose(1, 0)
+        # init_object_orientation = Quaternion(matrix=rot_matrix @ Quaternion(init_object_orientation).rotation_matrix).elements
+        # t = abs(retarget_pose[pregrasp_step][2] - 0.7)
+        # retarget_pose[:, 0] -= t * np.tan(beta)
+        # offset_x = t * (np.tan(beta) - np.sin(beta))
+        # retarget_pose[:, 0] += offset_x
+        # offset_y = t * (1 - np.cos(beta))
+        # retarget_pose[:, 2] += offset_y
+        # retarget_pose[:, 4] += 0.1 * np.pi
+
         new_init_pos = np.random.uniform(low=-0.15, high=0.15, size=2)
         object_translation[:, :2] += new_init_pos
         hand_joint[:, :, :2] += new_init_pos
@@ -173,6 +189,7 @@ def main(traj_name=None):
 
         physics.reset()
         physics.model.body_pos[45] = init_object_translation
+        physics.model.body_quat[45] = init_object_orientation
         physics.model.body_pos[46:] = pregrasp_joint[[0, 4, 8, 12, 16, 20]]
         viewer = mujoco_viewer.MujocoViewer(model, data)
         # simulate and render
