@@ -78,6 +78,9 @@ def main(traj_name=None):
     else:
         traj_names = [traj_name]
 
+    # with open('trajectories/retarget_result_dexycb.pkl', 'rb') as f:
+        # retarget_data = pickle.load(f)
+
     for traj_name in traj_names:
         index = '-'.join(traj_name.split('-')[2:-1]) + '/' + traj_name.split('-')[-1]
 
@@ -92,6 +95,8 @@ def main(traj_name=None):
         init_object_translation = np.array(traj_file['s_0']['pregrasp']['object_translation'])
         init_object_orientation = np.array(traj_file['s_0']['pregrasp']['object_orientation'])
         retarget_pose = np.array(traj_file['s_0']['pregrasp']['robot_position'])
+        pregrasp_step = traj_file['s_0']['pregrasp']['pregrasp_step']
+        # retarget_pose = np.array(retarget_data[index]['robot_joints'])
 
         object_translation = np.array(traj_file['object_translation'])
         object_orientation = np.array(traj_file['object_orientation'])
@@ -130,21 +135,26 @@ def main(traj_name=None):
         model = physics.model.ptr
         data = physics.data.ptr
 
-        is_contact = False
-        pregrasp_step = 9
-        for idx in range(retarget_pose.shape[0]):
-            if idx >= 9:
-                physics.reset()
-                physics.data.qpos[:30] = retarget_pose[idx]
-                physics.data.qvel[:30] = np.zeros(30)
+        # is_contact = False
+        # pregrasp_step = 9
+        # for idx in range(retarget_pose.shape[0]):
+            # if idx >= 9:
+                # physics.reset()
+                # physics.data.qpos[:30] = retarget_pose[idx]
+                # physics.data.qvel[:30] = np.zeros(30)
 
-                physics.forward()
-                is_contact = check_contacts(physics, robot_geom_names, object_geom_names)
-                if is_contact:
-                    break
-                pregrasp_step += 1
+                # physics.forward()
+                # is_contact = check_contacts(physics, robot_geom_names, object_geom_names)
+                # if is_contact:
+                    # break
+                # pregrasp_step += 1
 
-        pregrasp_step -= 1
+        # pregrasp_step -= 1
+
+        # new_traj_file = traj_file.copy()
+        # new_traj_file['s_0']['pregrasp']['robot_position'] = retarget_data[index]['robot_joints']
+        # new_traj_file['s_0']['pregrasp']['pregrasp_step'] = pregrasp_step
+        # np.savez(traj_path, **new_traj_file)
 
         object_translation[:, :2] -= init_object_translation[:2]
         hand_joint[:, :, :2] -= init_object_translation[:2]
@@ -170,7 +180,6 @@ def main(traj_name=None):
             if viewer.is_alive:
                 physics.data.qpos[:30] = retarget_pose[pregrasp_step]
                 physics.data.qvel[:30] = np.zeros(30)
-
                 physics.step()
                 viewer.render()
             else:
