@@ -97,7 +97,7 @@
                                 <site class="D_Touch" name="Tch_ffmiddle" size="0.009 0.002 0.007" pos="0 -.007 .013"/>
                                 <body name="ffdistal" pos="0 0 0.025">
                                     <inertial pos="0 0 0.015" quat="0.7071 -0.00300043 0.00300043 0.7071" mass="0.01" diaginertia="1e-05 1e-05 1e-05" />
-                                    <body name="ffdistal_point" pos="0 0.0 0.01"> <geom name="ffdistal_point" contype="0" conaffinity="0" rgba="1 0 0 0" size=".01" type="sphere"/></body>
+                                    <body name="ffdistal_point" pos="0 0.0 0.024"> <geom name="ffdistal_point" contype="0" conaffinity="0" rgba="0 0 1 1" size=".01" type="sphere"/></body>
                                     <joint name="FFJ0" pos="0 0 0" axis="1 0 0" range="0 1.571" />
                                     <geom name="V_ffdistal" class="D_Vizual" pos="0 0 0.001" mesh="F1" />
                                     <geom name="C_ffdistal" class="DC_Hand" size="0.00705 0.012" pos="0 0 0.012" type="capsule" condim="4" />
@@ -126,7 +126,7 @@
                                 <site class="D_Touch" name="Tch_mfmiddle" size="0.009 0.002 0.007" pos="0 -.007 .013"/>
                                 <body name="mfdistal" pos="0 0 0.025">
                                     <inertial pos="0 0 0.015" quat="0.7071 -0.00300043 0.00300043 0.7071" mass="0.01" diaginertia="1e-05 1e-05 1e-05" />
-                                    <body name="mfdistal_point" pos="0 0 0.01"> <geom name="mfdistal_point" contype="0" conaffinity="0" rgba="1 0 0 0" size=".01" type="sphere"/></body>
+                                    <body name="mfdistal_point" pos="0 0 0.024"> <geom name="mfdistal_point" contype="0" conaffinity="0" rgba="0 0 1 1" size=".01" type="sphere"/></body>
                                     <joint name="MFJ0" pos="0 0 0" axis="1 0 0" range="0 1.571" />
                                     <geom name="V_mfdistal" class="D_Vizual" mesh="F1" />
                                     <geom name="C_mfdistal" class="DC_Hand" size="0.00705 0.012" pos="0 0 0.012" type="capsule" condim="4" />
@@ -156,7 +156,7 @@
                                 <site class="D_Touch" name="Tch_rfmiddle" size="0.009 0.002 0.007" pos="0 -.007 .013"/>
                                 <body name="rfdistal" pos="0 0 0.025">
                                     <inertial pos="0 0 0.015" quat="0.7071 -0.00300043 0.00300043 0.7071" mass="0.01" diaginertia="1e-05 1e-05 1e-05" />
-                                    <body name="rfdistal_point" pos="0 0 0.01"> <geom name="rfdistal_point" contype="0" conaffinity="0" rgba="1 0 0 0" size=".01" type="sphere"/></body>
+                                    <body name="rfdistal_point" pos="0 0 0.024"> <geom name="rfdistal_point" contype="0" conaffinity="0" rgba="0 0 1 1" size=".01" type="sphere"/></body>
                                     <joint name="RFJ0" pos="0 0 0" axis="1 0 0" range="0 1.571" />
                                     <geom name="V_rfdistal" class="D_Vizual" pos="0 0 0.001" mesh="F1" />
                                     <geom name="C_rfdistal" class="DC_Hand" size="0.00705 0.012" pos="0 0 0.012" type="capsule" condim="4" />
@@ -192,7 +192,7 @@
                                     <site class="D_Touch" name="Tch_lfmiddle" size="0.009 0.002 0.007" pos="0 -.007 .013"/>
                                     <body name="lfdistal" pos="0 0 0.025">
                                         <inertial pos="0 0 0.015" quat="0.7071 -0.00300043 0.00300043 0.7071" mass="0.01" diaginertia="1e-05 1e-05 1e-05" />
-                                        <body name="lfdistal_point" pos="0 0 0.01"> <geom name="lfdistal_point" contype="0" conaffinity="0" rgba="1 0 0 0" size=".01" type="sphere"/></body>
+                                        <body name="lfdistal_point" pos="0 0 0.024"> <geom name="lfdistal_point" contype="0" conaffinity="0" rgba="0 0 1 1" size=".01" type="sphere"/></body>
                                         <joint name="LFJ0" pos="0 0 0" axis="1 0 0" range="0 1.571" />
                                         <geom name="V_lfdistal" class="D_Vizual" pos="0 0 0.001" mesh="F1" />
                                         <geom name="C_lfdistal" class="DC_Hand" size="0.00705 0.012" pos="0 0 0.012" type="capsule" condim="4" />
@@ -227,7 +227,7 @@
                                     <site class="D_Touch" name="Tch_thmiddle" size="0.005 0.011 0.011" pos="-.008 0 0.018" />
                                     <body name="thdistal" pos="0 0 0.032">
                                         <inertial pos="0 0 0.016" quat="0.99887 -0.00499935 -0.0469939 0.00499935" mass="0.016" diaginertia="1e-05 1e-05 1e-05" />
-                                        <body name="thdistal_point" pos="0 0 0.01"> <geom name="thdistal_point" contype="0" conaffinity="0" rgba="1 0 0 0" size=".0115" type="sphere"/></body>
+                                        <body name="thdistal_point" pos="0 0 0.024"> <geom name="thdistal_point" contype="0" conaffinity="0" rgba="0 0 1 1" size=".0115" type="sphere"/></body>
                                         <joint name="THJ0" pos="0 0 0" axis="0 1 0" range="-1.571 0" />
                                         <geom name="V_thdistal" class="D_Vizual" mesh="TH1_z" />
                                         <geom name="C_thdistal" class="DC_Hand" size="0.00918 0.013" pos="0 0 0.013" type="capsule" condim="4" />
