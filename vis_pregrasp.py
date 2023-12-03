@@ -1,6 +1,7 @@
 from dm_control import mjcf
 from dm_control.rl import control
 from dm_control.mjcf import debugging
+from scipy.spatial.transform import Rotation as R
 from pyquaternion import Quaternion
 from physics import physics_from_mjcf
 from robots import get_robot
@@ -163,21 +164,23 @@ def main(traj_name=None):
         retarget_pose[:, 2] -= init_object_translation[1]
         init_object_translation[:2] -= init_object_translation[:2]
 
-        # beta = np.random.uniform(low=0.0, high=np.pi / 3)
-        # rot_matrix = np.array([[np.cos(beta), -np.sin(beta), 0], [np.sin(beta), np.cos(beta), 0], [0, 0, 1]])
-        # object_translation = (rot_matrix @ object_translation.transpose(1, 0)).transpose(1, 0)
-        # for idx in range(object_orientation.shape[0]):
-            # object_orientation[idx] = Quaternion(matrix=(rot_matrix @ Quaternion(object_orientation[idx]).rotation_matrix)).elements
-        # hand_joint = (rot_matrix[None] @ hand_joint.transpose(0, 2, 1)).transpose(0, 2, 1)
-        # pregrasp_joint = (rot_matrix @ pregrasp_joint.transpose(1, 0)).transpose(1, 0)
-        # init_object_orientation = Quaternion(matrix=rot_matrix @ Quaternion(init_object_orientation).rotation_matrix).elements
-        # t = abs(retarget_pose[pregrasp_step][2] - 0.7)
-        # retarget_pose[:, 0] -= t * np.tan(beta)
-        # offset_x = t * (np.tan(beta) - np.sin(beta))
-        # retarget_pose[:, 0] += offset_x
-        # offset_y = t * (1 - np.cos(beta))
-        # retarget_pose[:, 2] += offset_y
-        # retarget_pose[:, 4] += 0.1 * np.pi
+        beta = np.random.uniform(low=-1/6, high=1/6) * np.pi
+        rot_matrix = np.array([[np.cos(beta), -np.sin(beta), 0], [np.sin(beta), np.cos(beta), 0], [0, 0, 1]])
+        object_translation = (rot_matrix @ object_translation.transpose(1, 0)).transpose(1, 0)
+        for idx in range(object_orientation.shape[0]):
+            object_orientation[idx] = Quaternion(matrix=(rot_matrix @ Quaternion(object_orientation[idx]).rotation_matrix)).elements
+        hand_joint = (rot_matrix[None] @ hand_joint.transpose(0, 2, 1)).transpose(0, 2, 1)
+        pregrasp_joint = (rot_matrix @ pregrasp_joint.transpose(1, 0)).transpose(1, 0)
+        init_object_orientation = Quaternion(matrix=rot_matrix @ Quaternion(init_object_orientation).rotation_matrix).elements
+        ori_pos = np.zeros((retarget_pose.shape[0], 2))
+        ori_pos[:, 0] = -retarget_pose[:, 0]
+        ori_pos[:, 1] = retarget_pose[:, 2] - 0.7
+        new_pos = (rot_matrix[:2, :2] @ ori_pos.transpose(1, 0)).transpose(1, 0)
+        retarget_pose[:, 0] -= (new_pos[:, 0] - ori_pos[:, 0])
+        retarget_pose[:, 2] += (new_pos[:, 1] - ori_pos[:, 1])
+        rot_robot = R.from_euler('XYZ', retarget_pose[:, [3, 4, 5]]).as_euler('YXZ')
+        rot_robot[:, 0] += beta
+        retarget_pose[:, [3, 4, 5]] = R.from_euler('YXZ', rot_robot).as_euler('XYZ')
 
         new_init_pos = np.random.uniform(low=-0.15, high=0.15, size=2)
         object_translation[:, :2] += new_init_pos
