@@ -95,14 +95,17 @@ def main(traj_name=None):
 
         init_object_translation = np.array(traj_file['s_0']['pregrasp']['object_translation'])
         init_object_orientation = np.array(traj_file['s_0']['pregrasp']['object_orientation'])
-        retarget_pose = np.array(traj_file['s_0']['pregrasp']['robot_position'])
-        pregrasp_step = traj_file['s_0']['pregrasp']['pregrasp_step']
-        # retarget_pose = np.array(retarget_data[index]['robot_joints'])
+        retarget_pose = np.array(traj_file['robot_qpos'])
+        retarget_joint = np.array(traj_file['robot_jpos'])
+        pregrasp_step = traj_file['pregrasp_step']
+        # retarget_pose = np.array(retarget_data[index]['robot_qpos'])
+        # retarget_joint = np.array(retarget_data[index]['robot_jpos'])
 
         object_translation = np.array(traj_file['object_translation'])
         object_orientation = np.array(traj_file['object_orientation'])
         hand_joint = np.array(traj_file['hand_joint'])
         pregrasp_joint = np.array(traj_file['s_0']['pregrasp']['position'])
+        # pregrasp_joint = np.array(traj_file['robot_jpos'][pregrasp_step])
 
         env = TableEnv()
         robot_model = get_robot('adroit')(limp=False)
@@ -116,8 +119,6 @@ def main(traj_name=None):
         object_geom_names = [geom.get_attributes()['name'] for geom in object_mesh_list]
         object_geom_names = [f'{object_name}/{name}' for name in object_geom_names if 'contact' in name]
 
-        object_model.mjcf_model.worldbody.add('body', name=f'hand_palm', pos=pregrasp_joint[0])
-        object_model.mjcf_model.worldbody.body[f'hand_palm'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_palm_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
         object_model.mjcf_model.worldbody.add('body', name=f'hand_thumb', pos=pregrasp_joint[4])
         object_model.mjcf_model.worldbody.body[f'hand_thumb'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_thumb_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
         object_model.mjcf_model.worldbody.add('body', name=f'hand_index', pos=pregrasp_joint[8])
@@ -153,8 +154,9 @@ def main(traj_name=None):
         # pregrasp_step -= 1
 
         # new_traj_file = traj_file.copy()
-        # new_traj_file['s_0']['pregrasp']['robot_position'] = retarget_data[index]['robot_joints']
-        # new_traj_file['s_0']['pregrasp']['pregrasp_step'] = pregrasp_step
+        # new_traj_file['robot_qpos'] = retarget_data[index]['robot_qpos']
+        # new_traj_file['robot_jpos'] = retarget_data[index]['robot_jpos']
+        # new_traj_file['pregrasp_step'] = pregrasp_step
         # np.savez(traj_path, **new_traj_file)
 
         object_translation[:, :2] -= init_object_translation[:2]
@@ -193,7 +195,7 @@ def main(traj_name=None):
         physics.reset()
         physics.model.body_pos[45] = init_object_translation
         physics.model.body_quat[45] = init_object_orientation
-        physics.model.body_pos[46:] = pregrasp_joint[[0, 4, 8, 12, 16, 20]]
+        physics.model.body_pos[46:] = pregrasp_joint[[4, 8, 12, 16, 20]]
         viewer = mujoco_viewer.MujocoViewer(model, data)
         # simulate and render
         for _ in range(1000):
