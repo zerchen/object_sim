@@ -138,7 +138,8 @@ def main(traj_name=None):
         rot_robot[:, 0] += beta
         retarget_pose[:, [3, 4, 5]] = R.from_euler('YXZ', rot_robot).as_euler('XYZ')
 
-        new_init_pos = np.random.uniform(low=-0.15, high=0.15, size=2)
+        new_init_pos = np.random.uniform(low=-0.15, high=0.15, size=2) * 0.25
+        new_init_pos[0] = 0.15 * 0.25 - 0.1
         object_translation[:, :2] += new_init_pos
         init_object_translation[:2] += new_init_pos
         retarget_pose[:, 0] -= new_init_pos[0]
