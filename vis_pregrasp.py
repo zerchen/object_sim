@@ -144,6 +144,7 @@ def main(traj_name=None):
         init_object_translation[:2] += new_init_pos
         retarget_pose[:, 0] -= new_init_pos[0]
         retarget_pose[:, 2] += new_init_pos[1]
+        idx = np.where(retarget_pose[:,2]>0)[0][0]
 
         physics.reset()
         physics.model.body_pos[45] = init_object_translation
