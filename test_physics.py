@@ -8,6 +8,7 @@ from robots import get_robot
 from fire import Fire
 from base import MjModel
 import numpy as np
+import imageio
 import pickle
 import random
 import mujoco_viewer
@@ -147,21 +148,22 @@ def main(traj_name=None):
         idx = np.where(retarget_pose[:,2]>0)[0][0]
 
         physics.reset()
-        physics.model.body_pos[45] = init_object_translation
-        physics.model.body_quat[45] = init_object_orientation
-        viewer = mujoco_viewer.MujocoViewer(model, data)
+        physics.data.qpos[:30] = retarget_pose[-1]
+        physics.data.qvel[:30] = np.zeros(30)
+        physics.model.body_pos[45] = object_translation[-1]
+        physics.model.body_quat[45] = object_orientation[-1]
+        physics.forward()
+
+        writer = imageio.get_writer(f'{traj_name}.mp4', fps=25)
         # simulate and render
-        for _ in range(1000):
-            if viewer.is_alive:
-                physics.data.qpos[:30] = retarget_pose[pregrasp_step]
+        for time in range(200):
+            if time > 20:
+                physics.data.qpos[:30] = retarget_pose[-1]
                 physics.data.qvel[:30] = np.zeros(30)
                 physics.step()
-                viewer.render()
-            else:
-                break
-
+            writer.append_data(physics.render(camera_id=0, height=512, width=512))
         # close
-        viewer.close()
+        writer.close()
 
 if __name__ == '__main__':
     Fire(main)
