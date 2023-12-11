@@ -110,6 +110,12 @@ def main(traj_name=None):
         object_geom_names = [geom.get_attributes()['name'] for geom in object_mesh_list]
         object_geom_names = [f'{object_name}/{name}' for name in object_geom_names if 'contact' in name]
 
+        for idx, _ in enumerate(traj_file['object_translation'][1:]):
+            if idx % 1 == 0:
+                object_model.mjcf_model.worldbody.add('body', name=f'object_marker_{idx}', pos=object_translation[idx], quat=object_orientation[idx])
+                object_model.mjcf_model.worldbody.body[f'object_marker_{idx}'].add('geom', contype='0', conaffinity='0', mass='0', name=f'target_visual_{idx}', mesh=object_model.mjcf_model.worldbody.body['object_entity'].geom['entity_visual'].mesh, rgba=np.array([0.996, 0.878, 0.824, 0.125]))
+                object_model.mjcf_model.worldbody.body[f'object_marker_{idx}'].geom[f'target_visual_{idx}'].type = "mesh"
+
         env.attach(object_model)
         physics = physics_from_mjcf(env)
         ori_obs_pos = physics.named.data.xpos[45].copy()
@@ -147,8 +153,11 @@ def main(traj_name=None):
         idx = np.where(retarget_pose[:,2]>0)[0][0]
 
         physics.reset()
-        physics.model.body_pos[45] = init_object_translation
-        physics.model.body_quat[45] = init_object_orientation
+        physics.model.body_pos[45] = object_translation[0]
+        physics.model.body_quat[45] = object_orientation[0]
+        physics.model.body_pos[46:] = object_translation[1:]
+        physics.model.body_quat[46:] = object_orientation[1:]
+
         viewer = mujoco_viewer.MujocoViewer(model, data)
         # simulate and render
         for _ in range(1000):
