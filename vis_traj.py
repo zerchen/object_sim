@@ -111,7 +111,7 @@ def main(traj_name=None):
         object_geom_names = [f'{object_name}/{name}' for name in object_geom_names if 'contact' in name]
 
         final_goal = np.array([np.random.uniform(low=-0.3, high=0.1), np.random.uniform(low=-0.15, high=0.15), np.random.uniform(low=0.15, high=0.25)], dtype=np.float32)
-        min_idx = np.argmin(np.linalg.norm(object_translation - final_goal, axis=1))
+        min_idx = np.where(object_translation[:, 2] - object_translation[0, 2] > 0.1)[0][0]
         object_translation = object_translation[:min_idx + 1]
         object_orientation = object_orientation[:min_idx + 1]
 
@@ -127,7 +127,7 @@ def main(traj_name=None):
 
         dist_vec = final_goal - object_translation[-1]
         unit_dist_vec = dist_vec / np.linalg.norm(dist_vec)
-        relocate_step = 0.02
+        relocate_step = 0.025
         num_step = int(np.linalg.norm(dist_vec) // relocate_step)
 
         syn_object_translation = []
@@ -138,6 +138,9 @@ def main(traj_name=None):
         if np.linalg.norm(final_goal - syn_object_translation[-1]) > 0:
             num_step += 1
             syn_object_translation.append(final_goal)
+
+        total_steps = len(object_translation) + len(syn_object_translation)
+        print(f'total_steps: {total_steps}')
 
         for idx in range(num_step):
             object_model.mjcf_model.worldbody.add('body', name=f'object_marker_syn_{idx}', pos=syn_object_translation[idx], quat=object_orientation[-1])
