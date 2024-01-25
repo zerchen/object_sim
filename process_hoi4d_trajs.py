@@ -71,11 +71,21 @@ def object_generator(path):
     return __XMLObj__
 
 
+SEQ_LEN = {
+	"ZY20210800004-H4-C2-N39-S10-s05-T5": 100,
+	# "ZY20210800004-H4-C2-N19-S13-s01-T5": 130,
+}
+
+
 def main(traj_name=None):
     with open('trajectories/retarget_result_hoi4d.pkl', 'rb') as f:
         retarget_data = pickle.load(f)
 
     for key_name in retarget_data.keys():
+        if key_name not in list(SEQ_LEN.keys()):
+            continue
+
+        origin_length = SEQ_LEN[key_name]
         object_name = retarget_data[key_name]['object_name']
         object_category = 'hoi4d'
         traj_name = '-'.join([object_category, object_name, key_name.replace('/', '-')])
@@ -91,24 +101,24 @@ def main(traj_name=None):
         output_data['robot_qpos'][:, 0] += output_data['object_translation'][0, 0]
         output_data['robot_qpos'][:, 2] -= output_data['object_translation'][0, 1]
         output_data['robot_qpos'][:, 1] -= output_data['object_translation'][0, 2]
-        output_data['robot_qpos'][:, 1] += 0.05
+        output_data['robot_qpos'][:, 1] += 0.03
 
         output_data['robot_jpos'] = np.array(retarget_data[key_name]['robot_jpos'], dtype=np.float32)
         output_data['robot_jpos'] = output_data['robot_jpos'] - output_data['object_translation'][0, :]
-        output_data['robot_jpos'][:, :, 2] += 0.05
+        output_data['robot_jpos'][:, :, 2] += 0.03
 
         output_data['object_translation'][:, 0:3] = output_data['object_translation'][:, 0:3] - output_data['object_translation'][0, 0:3]
-        output_data['object_translation'][:, 2] += 0.05
+        output_data['object_translation'][:, 2] += 0.03
         obj_quat_list = list()
         for idx in range(len(output_data['object_translation'])):
             obj_quat = list(R.from_matrix(retarget_data[key_name]['object_pose'][idx, :3, :3]).as_quat()[[-1, 0, 1, 2]])
             obj_quat_list.append(obj_quat)
         output_data['object_orientation'] = np.array(obj_quat_list, dtype=np.float32)
 
-        output_data['robot_qpos'] = output_data['robot_qpos'][0:90:3]
-        output_data['robot_jpos'] = output_data['robot_jpos'][0:90:3]
-        output_data['object_translation'] = output_data['object_translation'][0:90:3]
-        output_data['object_orientation'] = output_data['object_orientation'][0:90:3]
+        output_data['robot_qpos'] = output_data['robot_qpos'][0:origin_length:3]
+        output_data['robot_jpos'] = output_data['robot_jpos'][0:origin_length:3]
+        output_data['object_translation'] = output_data['object_translation'][0:origin_length:3]
+        output_data['object_orientation'] = output_data['object_orientation'][0:origin_length:3]
         output_data['length'] = len(output_data['object_orientation'])
 
         env = TableEnv()
