@@ -154,10 +154,13 @@ def main(traj_name="ycb-025_mug-20200709-subject-01-20200709_150949"):
         tank_model = object_generator(f"objects/common/water_tank.xml")(pos=(-0.08, -0.1, 0.03), quat=(1, 0, 0, 0))
         env.attach(tank_model)
 
-        object_model = object_generator("objects/common/water_mug.xml")(pos=init_object_translation, quat=init_object_orientation)
+        object_model = object_generator(f"objects/{object_category}/{object_name}.xml")(pos=init_object_translation, quat=init_object_orientation)
         object_mesh_list = object_model.mjcf_model.find_all('geom')
         object_geom_names = [geom.get_attributes()['name'] for geom in object_mesh_list]
         object_geom_names = [f'{object_name}/{name}' for name in object_geom_names if 'contact' in name]
+
+        water_model = object_generator(f"objects/common/water.xml")(pos=init_object_translation, quat=init_object_orientation)
+        env.attach(water_model)
 
         final_goal = np.array([-0.025, -0.1, 0.12], dtype=np.float32)
         min_idx = np.where(object_translation[:, 2] - object_translation[0, 2] > 0.12)[0][0]
