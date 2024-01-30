@@ -102,7 +102,7 @@ def object_generator(path):
     return __XMLObj__
 
 
-def main(traj_name="ycb-011_banana-20200928-subject-07-20200928_145800"):
+def main(traj_name="ycb-011_banana-20201022-subject-10-20201022_112651"):
     if traj_name is None:
         traj_names = os.listdir('trajectories/ycb')
         traj_names = [name.split('.')[0] for name in traj_names]
@@ -156,15 +156,12 @@ def main(traj_name="ycb-011_banana-20200928-subject-07-20200928_145800"):
         object_geom_names = [geom.get_attributes()['name'] for geom in object_mesh_list]
         object_geom_names = [f'{object_name}/{name}' for name in object_geom_names if 'contact' in name]
 
-        final_goal = np.array([0.0, 0.0, 0.12], dtype=np.float32)
-        min_idx1 = np.where(object_translation[:, 2] - object_translation[0, 2] > 0.12)[0][0]
-        final_rot = object_orientation[min_idx1].copy()
-
+        final_goal = np.array([0.0, -0.02, 0.24], dtype=np.float32)
         min_idx = np.where(object_translation[:, 2] - object_translation[0, 2] > 0.24)[0][0]
         object_translation = object_translation[:min_idx + 1]
         object_orientation = object_orientation[:min_idx + 1]
-        object_orientation[min_idx1:] = final_rot
         final_goal[2] = object_translation[-1, 2]
+        final_rot = (R.from_rotvec(-np.pi / 2 * np.array([1, 0, 0])) * R.from_quat(object_orientation[-1][[1, 2, 3, 0]])).as_quat()[[3, 0, 1, 2]]
 
         for idx, _ in enumerate(object_translation[1:]):
             if idx % 1 == 0:
@@ -172,7 +169,7 @@ def main(traj_name="ycb-011_banana-20200928-subject-07-20200928_145800"):
                 object_model.mjcf_model.worldbody.body[f'object_marker_{idx}'].add('geom', contype='0', conaffinity='0', mass='0', name=f'target_visual_{idx}', mesh=object_model.mjcf_model.worldbody.body['object_entity'].geom['entity_visual'].mesh, rgba=np.array([0.996, 0.878, 0.824, 0.125]))
                 object_model.mjcf_model.worldbody.body[f'object_marker_{idx}'].geom[f'target_visual_{idx}'].type = "mesh"
 
-        object_model.mjcf_model.worldbody.add('body', name=f'object_marker', pos=final_goal, quat=object_orientation[-1])
+        object_model.mjcf_model.worldbody.add('body', name=f'object_marker', pos=final_goal, quat=final_rot)
         object_model.mjcf_model.worldbody.body[f'object_marker'].add('geom', contype='0', conaffinity='0', mass='0', name='target_visual', mesh=object_model.mjcf_model.worldbody.body['object_entity'].geom['entity_visual'].mesh, rgba=np.array([0, 1, 0, 0.125]))
         object_model.mjcf_model.worldbody.body[f'object_marker'].geom['target_visual'].type = "mesh"
 
@@ -180,18 +177,33 @@ def main(traj_name="ycb-011_banana-20200928-subject-07-20200928_145800"):
         unit_dist_vec = dist_vec / np.linalg.norm(dist_vec)
         relocate_step = 0.02
         num_step = int(np.linalg.norm(dist_vec) // relocate_step)
+        init_rot = R.from_quat(object_orientation[-1][[1, 2, 3, 0]])
+        rotation_step = -np.pi / 2 / num_step
 
         syn_object_translation = []
         syn_object_orientation = []
+        syn_retarget_joint = []
         for idx in range(num_step):
             step_size = (idx + 1) * relocate_step
             syn_object_translation.append(object_translation[-1] + step_size * unit_dist_vec)
-            syn_object_orientation.append(object_orientation[-1])
 
-        if np.linalg.norm(final_goal - syn_object_translation[-1]) > 0:
+            rot_size = (idx + 1) * rotation_step
+            syn_object_orientation.append((R.from_rotvec(rot_size * np.array([1, 0, 0])) * init_rot).as_quat()[[3, 0, 1, 2]])
+
+            cur_joint = retarget_joint[min_idx].copy()
+            cur_joint += (syn_object_translation[-1] - object_translation[-1])
+            cur_joint -= syn_object_translation[-1]
+            rotmat = R.from_rotvec(rot_size * np.array([0, 1, 0])).as_matrix()
+            cur_joint = (rotmat @ cur_joint.transpose(1, 0)).transpose(1, 0)
+            cur_joint += syn_object_translation[-1]
+            syn_retarget_joint.append(cur_joint)
+
+        unit_dist_vec = np.array([0, 0, -0.02])
+        for idx in range(5):
             num_step += 1
-            syn_object_translation.append(final_goal)
-            syn_object_orientation.append(object_orientation[-1])
+            syn_object_translation.append(syn_object_translation[-1] + unit_dist_vec)
+            syn_object_orientation.append(syn_object_orientation[-1])
+            syn_retarget_joint.append(syn_retarget_joint[-1] + unit_dist_vec[None, :])
 
         total_steps = len(object_translation) + len(syn_object_translation)
         print(f'total_steps: {total_steps}')
@@ -201,18 +213,18 @@ def main(traj_name="ycb-011_banana-20200928-subject-07-20200928_145800"):
             object_model.mjcf_model.worldbody.body[f'object_marker_syn_{idx}'].add('geom', contype='0', conaffinity='0', mass='0', name=f'target_visual_syn_{idx}', mesh=object_model.mjcf_model.worldbody.body['object_entity'].geom['entity_visual'].mesh, rgba=np.array([1, 0, 0, 0.125]))
             object_model.mjcf_model.worldbody.body[f'object_marker_syn_{idx}'].geom[f'target_visual_syn_{idx}'].type = "mesh"
 
-        # object_model.mjcf_model.worldbody.add('body', name=f'hand_palm', pos=syn_retarget_joint[-1][0])
-        # object_model.mjcf_model.worldbody.body[f'hand_palm'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_palm_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
-        # object_model.mjcf_model.worldbody.add('body', name=f'hand_thumb', pos=syn_retarget_joint[-1][1])
-        # object_model.mjcf_model.worldbody.body[f'hand_thumb'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_thumb_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
-        # object_model.mjcf_model.worldbody.add('body', name=f'hand_index', pos=syn_retarget_joint[-1][2])
-        # object_model.mjcf_model.worldbody.body[f'hand_index'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_index_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
-        # object_model.mjcf_model.worldbody.add('body', name=f'hand_middle', pos=syn_retarget_joint[-1][3])
-        # object_model.mjcf_model.worldbody.body[f'hand_middle'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_middle_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
-        # object_model.mjcf_model.worldbody.add('body', name=f'hand_ring', pos=syn_retarget_joint[-1][4])
-        # object_model.mjcf_model.worldbody.body[f'hand_ring'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_ring_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
-        # object_model.mjcf_model.worldbody.add('body', name=f'hand_little', pos=syn_retarget_joint[-1][5])
-        # object_model.mjcf_model.worldbody.body[f'hand_little'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_little_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
+        object_model.mjcf_model.worldbody.add('body', name=f'hand_palm', pos=syn_retarget_joint[-1][0])
+        object_model.mjcf_model.worldbody.body[f'hand_palm'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_palm_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
+        object_model.mjcf_model.worldbody.add('body', name=f'hand_thumb', pos=syn_retarget_joint[-1][1])
+        object_model.mjcf_model.worldbody.body[f'hand_thumb'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_thumb_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
+        object_model.mjcf_model.worldbody.add('body', name=f'hand_index', pos=syn_retarget_joint[-1][2])
+        object_model.mjcf_model.worldbody.body[f'hand_index'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_index_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
+        object_model.mjcf_model.worldbody.add('body', name=f'hand_middle', pos=syn_retarget_joint[-1][3])
+        object_model.mjcf_model.worldbody.body[f'hand_middle'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_middle_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
+        object_model.mjcf_model.worldbody.add('body', name=f'hand_ring', pos=syn_retarget_joint[-1][4])
+        object_model.mjcf_model.worldbody.body[f'hand_ring'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_ring_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
+        object_model.mjcf_model.worldbody.add('body', name=f'hand_little', pos=syn_retarget_joint[-1][5])
+        object_model.mjcf_model.worldbody.body[f'hand_little'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_little_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
 
         env.attach(object_model)
         physics = physics_from_mjcf(env)
