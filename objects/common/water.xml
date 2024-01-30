@@ -2,7 +2,7 @@
     <include file="../../common.xml"/>
     <worldbody>
         <body name="water_entity" pos="0.0 0.0 0.0198">
-	    <composite type="particle" count="2 2 3" spacing="0.012" offset="0.0 0.0 0.02">
+	    <composite prefix="water" type="particle" count="2 2 3" spacing="0.012" offset="0.0 0.0 0.02">
 	    	<joint kind="main" damping="0.01"/>
 	    	<geom size="0.01" rgba="0.3216 0.3569 0.9804 0.6" condim="3"/>
 	    </composite>
