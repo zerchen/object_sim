@@ -102,7 +102,7 @@ def object_generator(path):
     return __XMLObj__
 
 
-def main(traj_name=None):
+def main(traj_name="ycb-011_banana-20200928-subject-07-20200928_145800"):
     if traj_name is None:
         traj_names = os.listdir('trajectories/ycb')
         traj_names = [name.split('.')[0] for name in traj_names]
