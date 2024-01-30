@@ -1,0 +1,39 @@
+<mujoco model="big_mug">
+    <include file="../../common.xml"/>
+    <worldbody>
+        <body name="object_entity" pos="0.0 0.0 0.06">
+            <joint name="OBJTx" pos="0 0 0" axis="1 0 0" type="slide" class="freejoint" />
+            <joint name="OBJTy" pos="0 0 0" axis="0 1 0" type="slide" class="freejoint" />
+            <joint name="OBJTz" pos="0 0 0" axis="0 0 1" type="slide" class="freejoint" />
+            <joint name="OBJRx" pos="0 0 0" axis="1 0 0" class="freejoint" />
+            <joint name="OBJRy" pos="0 0 0" axis="0 1 0" class="freejoint" />
+            <joint name="OBJRz" pos="0 0 0" axis="0 0 1" class="freejoint" />
+            <geom type="box" name="entity_visual_0" class="object_visual" pos="-0.0108 -0.0756 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="1.0 0.0 0.0 0.0" rgba="0.3 0.3 0.3 1" />
+            <geom type="box" name="entity_contact_0" class="object_contact" pos="-0.0108 -0.0756 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="1.0 0.0 0.0 0.0" mass="0.5" />
+            <geom type="box" name="entity_visual_1" class="object_visual" pos="0.02969999999999999 -0.06547152052610357 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="0.9659258262890683 0.0 0.0 0.25881904510252074" rgba="0.3 0.3 0.3 1" />
+            <geom type="box" name="entity_contact_1" class="object_contact" pos="0.02969999999999999 -0.06547152052610357 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="0.9659258262890683 0.0 0.0 0.25881904510252074" mass="0.5" />
+            <geom type="box" name="entity_visual_2" class="object_visual" pos="0.059348057706539524 -0.03780000000000001 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="0.8660254037844387 0.0 0.0 0.49999999999999994" rgba="0.3 0.3 0.3 1" />
+            <geom type="box" name="entity_contact_2" class="object_contact" pos="0.059348057706539524 -0.03780000000000001 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="0.8660254037844387 0.0 0.0 0.49999999999999994" mass="0.5" />
+            <geom type="box" name="entity_visual_3" class="object_visual" pos="0.0702 -4.629164900776995e-18 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="0.7071067811865476 0.0 0.0 0.7071067811865475" rgba="0.3 0.3 0.3 1" />
+            <geom type="box" name="entity_contact_3" class="object_contact" pos="0.0702 -4.629164900776995e-18 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="0.7071067811865476 0.0 0.0 0.7071067811865475" mass="0.5" />
+            <geom type="box" name="entity_visual_4" class="object_visual" pos="0.05934805770653954 0.037799999999999986 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="0.5000000000000001 0.0 0.0 0.8660254037844386" rgba="0.3 0.3 0.3 1" />
+            <geom type="box" name="entity_contact_4" class="object_contact" pos="0.05934805770653954 0.037799999999999986 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="0.5000000000000001 0.0 0.0 0.8660254037844386" mass="0.5" />
+            <geom type="box" name="entity_visual_5" class="object_visual" pos="0.02969999999999999 0.06547152052610357 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="0.25881904510252074 0.0 0.0 0.9659258262890683" rgba="0.3 0.3 0.3 1" />
+            <geom type="box" name="entity_contact_5" class="object_contact" pos="0.02969999999999999 0.06547152052610357 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="0.25881904510252074 0.0 0.0 0.9659258262890683" mass="0.5" />
+            <geom type="box" name="entity_visual_6" class="object_visual" pos="-0.010799999999999992 0.0756 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="6.123233995736766e-17 0.0 0.0 1.0" rgba="0.3 0.3 0.3 1" />
+            <geom type="box" name="entity_contact_6" class="object_contact" pos="-0.010799999999999992 0.0756 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="6.123233995736766e-17 0.0 0.0 1.0" mass="0.5" />
+            <geom type="box" name="entity_visual_7" class="object_visual" pos="-0.05130000000000001 0.06547152052610357 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="-0.25881904510252085 0.0 0.0 0.9659258262890683" rgba="0.3 0.3 0.3 1" />
+            <geom type="box" name="entity_contact_7" class="object_contact" pos="-0.05130000000000001 0.06547152052610357 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="-0.25881904510252085 0.0 0.0 0.9659258262890683" mass="0.5" />
+            <geom type="box" name="entity_visual_8" class="object_visual" pos="-0.08094805770653951 0.037800000000000035 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="-0.4999999999999998 0.0 0.0 0.8660254037844387" rgba="0.3 0.3 0.3 1" />
+            <geom type="box" name="entity_contact_8" class="object_contact" pos="-0.08094805770653951 0.037800000000000035 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="-0.4999999999999998 0.0 0.0 0.8660254037844387" mass="0.5" />
+            <geom type="box" name="entity_visual_9" class="object_visual" pos="-0.09179999999999999 1.3887494702330986e-17 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="-0.7071067811865475 0.0 0.0 0.7071067811865476" rgba="0.3 0.3 0.3 1" />
+            <geom type="box" name="entity_contact_9" class="object_contact" pos="-0.09179999999999999 1.3887494702330986e-17 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="-0.7071067811865475 0.0 0.0 0.7071067811865476" mass="0.5" />
+            <geom type="box" name="entity_visual_10" class="object_visual" pos="-0.08094805770653951 -0.03780000000000001 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="-0.8660254037844387 0.0 0.0 0.49999999999999994" rgba="0.3 0.3 0.3 1" />
+            <geom type="box" name="entity_contact_10" class="object_contact" pos="-0.08094805770653951 -0.03780000000000001 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="-0.8660254037844387 0.0 0.0 0.49999999999999994" mass="0.5" />
+            <geom type="box" name="entity_visual_11" class="object_visual" pos="-0.05130000000000003 -0.06547152052610354 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="-0.9659258262890682 0.0 0.0 0.258819045102521" rgba="0.3 0.3 0.3 1" />
+            <geom type="box" name="entity_contact_11" class="object_contact" pos="-0.05130000000000003 -0.06547152052610354 0.0027" size="0.0252 0.0045000000000000005 0.07200000000000001" quat="-0.9659258262890682 0.0 0.0 0.258819045102521" mass="0.5" />
+            <geom type="cylinder" name="entity_visual_12" class="object_visual" pos="0.0 0.0 -0.0594" size="0.07650000000000001 0.009000000000000001" rgba="0.3 0.3 0.3 1" />
+            <geom type="cylinder" name="entity_contact_12" class="object_contact" pos="0.0 0.0 -0.0594" size="0.07650000000000001 0.009000000000000001" mass="0.5" />
+        </body>
+    </worldbody>
+</mujoco>
