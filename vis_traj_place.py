@@ -148,7 +148,7 @@ def main(traj_name="ycb-011_banana-20201022-subject-10-20201022_112651"):
         robot_geom_names = [f'adroit/{name}' for name in robot_geom_names if 'C' in name]
         env.attach(robot_model)
 
-        mug_model = object_generator(f"objects/common/big_mug.xml")(pos=(0.0, 0.0, 0.06), quat=(1, 0, 0, 0))
+        mug_model = object_generator(f"objects/common/big_mug.xml")(pos=(0.03, 0.018, 0.06), quat=(1, 0, 0, 0))
         env.attach(mug_model)
 
         object_model = object_generator(f"objects/{object_category}/{object_name}.xml")(pos=init_object_translation, quat=init_object_orientation)
@@ -199,7 +199,7 @@ def main(traj_name="ycb-011_banana-20201022-subject-10-20201022_112651"):
             syn_retarget_joint.append(cur_joint)
 
         unit_dist_vec = np.array([0, 0, -0.02])
-        for idx in range(5):
+        for idx in range(8):
             num_step += 1
             syn_object_translation.append(syn_object_translation[-1] + unit_dist_vec)
             syn_object_orientation.append(syn_object_orientation[-1])
