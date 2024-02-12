@@ -102,7 +102,7 @@ def object_generator(path):
     return __XMLObj__
 
 
-def main(traj_name="ycb-011_banana-20201022-subject-10-20201022_112651"):
+def main(traj_name="ycb-011_banana-20200820-subject-03-20200820_141935"):
     if traj_name is None:
         traj_names = os.listdir('trajectories/ycb')
         traj_names = [name.split('.')[0] for name in traj_names]
@@ -148,7 +148,7 @@ def main(traj_name="ycb-011_banana-20201022-subject-10-20201022_112651"):
         robot_geom_names = [f'adroit/{name}' for name in robot_geom_names if 'C' in name]
         env.attach(robot_model)
 
-        mug_model = object_generator(f"objects/common/big_mug.xml")(pos=(0.03, 0.018, 0.06), quat=(1, 0, 0, 0))
+        mug_model = object_generator(f"objects/common/big_mug.xml")(pos=(0.01, 0.00, 0.06), quat=(1, 0, 0, 0))
         env.attach(mug_model)
 
         object_model = object_generator(f"objects/{object_category}/{object_name}.xml")(pos=init_object_translation, quat=init_object_orientation)
@@ -168,10 +168,6 @@ def main(traj_name="ycb-011_banana-20201022-subject-10-20201022_112651"):
                 object_model.mjcf_model.worldbody.add('body', name=f'object_marker_{idx}', pos=object_translation[idx], quat=object_orientation[idx])
                 object_model.mjcf_model.worldbody.body[f'object_marker_{idx}'].add('geom', contype='0', conaffinity='0', mass='0', name=f'target_visual_{idx}', mesh=object_model.mjcf_model.worldbody.body['object_entity'].geom['entity_visual'].mesh, rgba=np.array([0.996, 0.878, 0.824, 0.125]))
                 object_model.mjcf_model.worldbody.body[f'object_marker_{idx}'].geom[f'target_visual_{idx}'].type = "mesh"
-
-        object_model.mjcf_model.worldbody.add('body', name=f'object_marker', pos=final_goal, quat=final_rot)
-        object_model.mjcf_model.worldbody.body[f'object_marker'].add('geom', contype='0', conaffinity='0', mass='0', name='target_visual', mesh=object_model.mjcf_model.worldbody.body['object_entity'].geom['entity_visual'].mesh, rgba=np.array([0, 1, 0, 0.125]))
-        object_model.mjcf_model.worldbody.body[f'object_marker'].geom['target_visual'].type = "mesh"
 
         dist_vec = final_goal - object_translation[-1]
         unit_dist_vec = dist_vec / np.linalg.norm(dist_vec)
@@ -193,7 +189,7 @@ def main(traj_name="ycb-011_banana-20201022-subject-10-20201022_112651"):
             cur_joint = retarget_joint[min_idx].copy()
             cur_joint += (syn_object_translation[-1] - object_translation[-1])
             cur_joint -= syn_object_translation[-1]
-            rotmat = R.from_rotvec(rot_size * np.array([0, 1, 0])).as_matrix()
+            rotmat = R.from_rotvec(rot_size * np.array([1, 0, 0])).as_matrix()
             cur_joint = (rotmat @ cur_joint.transpose(1, 0)).transpose(1, 0)
             cur_joint += syn_object_translation[-1]
             syn_retarget_joint.append(cur_joint)
@@ -212,6 +208,10 @@ def main(traj_name="ycb-011_banana-20201022-subject-10-20201022_112651"):
             object_model.mjcf_model.worldbody.add('body', name=f'object_marker_syn_{idx}', pos=syn_object_translation[idx], quat=syn_object_orientation[idx])
             object_model.mjcf_model.worldbody.body[f'object_marker_syn_{idx}'].add('geom', contype='0', conaffinity='0', mass='0', name=f'target_visual_syn_{idx}', mesh=object_model.mjcf_model.worldbody.body['object_entity'].geom['entity_visual'].mesh, rgba=np.array([1, 0, 0, 0.125]))
             object_model.mjcf_model.worldbody.body[f'object_marker_syn_{idx}'].geom[f'target_visual_syn_{idx}'].type = "mesh"
+
+        object_model.mjcf_model.worldbody.add('body', name=f'object_marker', pos=syn_object_translation[-1], quat=syn_object_orientation[-1])
+        object_model.mjcf_model.worldbody.body[f'object_marker'].add('geom', contype='0', conaffinity='0', mass='0', name='target_visual', mesh=object_model.mjcf_model.worldbody.body['object_entity'].geom['entity_visual'].mesh, rgba=np.array([0, 1, 0, 0.125]))
+        object_model.mjcf_model.worldbody.body[f'object_marker'].geom['target_visual'].type = "mesh"
 
         object_model.mjcf_model.worldbody.add('body', name=f'hand_palm', pos=syn_retarget_joint[-1][0])
         object_model.mjcf_model.worldbody.body[f'hand_palm'].add('geom', type='sphere', contype='0', conaffinity='0', mass='0', name=f'hand_palm_visual', size="0.01", rgba=np.array([1, 0, 0, 1]))
